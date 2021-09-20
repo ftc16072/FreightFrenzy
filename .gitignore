@@ -85,3 +85,12 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# So we don't get reports of lots of unversioned files
+.idea/
+
+# Our doxygen stuff
+doxygen/
+
+# keep our vuforia license private
+TeamCode/src/main/res/values/licenses.xml
