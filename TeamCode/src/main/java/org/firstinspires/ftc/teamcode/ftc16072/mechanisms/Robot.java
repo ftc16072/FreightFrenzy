@@ -19,6 +19,11 @@ public class Robot {
         }
     }
 
+    /**
+     * Get all the mechanisms that are in the robot
+     *
+     * @return a QQ_Mechanism for every mechanism on the robot
+     */
     public List<QQ_Mechanism> getMechanismList() {
         return mechanismList;
     }
