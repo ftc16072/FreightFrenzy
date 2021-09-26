@@ -4,6 +4,7 @@ repositories {
     jcenter()  // Needed for tensorflow-lite
     maven{
         url = 'https://maven.brott.dev/'
+
     }
     flatDir {
         dirs rootProject.file('libs')
