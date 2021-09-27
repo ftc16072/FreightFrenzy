@@ -17,6 +17,8 @@ public abstract class QQ_Opmode extends OpMode {
     @Override
     public void init() {
         robot.init(hardwareMap);
+        gp1.update(gamepad1);
+        gp2.update(gamepad2);
     }
 
     @Override
@@ -33,5 +35,6 @@ public abstract class QQ_Opmode extends OpMode {
         } else {
             telemetry.addData("State", "Done");
         }
+
     }
 }
