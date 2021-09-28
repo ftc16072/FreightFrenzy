@@ -6,6 +6,9 @@ public class QQ_Joystick {
     public Polar location;
     public QQ_Button push;
 
+    QQ_Joystick() {
+        push = new QQ_Button();
+    }
 
     public void update(double x, double y, boolean pressed) {
         location = new Polar(x, y, DistanceUnit.CM);
