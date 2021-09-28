@@ -18,9 +18,9 @@ public class Robot {
      * @param hwmap the hardware map to init the mechanisms with
      */
     public void init(HardwareMap hwmap) {
-        for (QQ_Mechanism mechanism : mechanismList) {
+        /*for (QQ_Mechanism mechanism : mechanismList) {
             mechanism.init(hwmap);
-        }
+        }*/
     }
 
     /**

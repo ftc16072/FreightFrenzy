@@ -17,8 +17,10 @@ public abstract class QQ_Opmode extends OpMode {
     @Override
     public void init() {
         robot.init(hardwareMap);
-        gp1.update(gamepad1);
-        gp2.update(gamepad2);
+        if (usesGamepads) {
+            gp1 = new QQ_Gamepad(gamepad1);
+            gp2 = new QQ_Gamepad(gamepad2);
+        }
     }
 
     @Override

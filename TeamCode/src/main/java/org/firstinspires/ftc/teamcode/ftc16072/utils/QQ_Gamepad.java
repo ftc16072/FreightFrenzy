@@ -3,22 +3,34 @@ package org.firstinspires.ftc.teamcode.ftc16072.utils;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class QQ_Gamepad {
-    public QQ_DPad dpad = new QQ_DPad();
-    public QQ_Button square = new QQ_Button();
-    public QQ_Button triangle = new QQ_Button();
-    public QQ_Button circle = new QQ_Button();
-    public QQ_Button cross = new QQ_Button();
-    public QQ_Button start = new QQ_Button();
-    public QQ_Button back = new QQ_Button();
-    public QQ_Button lBumper = new QQ_Button();
-    public QQ_Button rBumper = new QQ_Button();
-    public QQ_Joystick leftStick = new QQ_Joystick();
-    public QQ_Joystick rightStick = new QQ_Joystick();
-    public QQ_Trigger rightTrigger = new QQ_Trigger();
-    public QQ_Trigger leftTrigger = new QQ_Trigger();
+    public QQ_DPad dpad;
+    public QQ_Button square;
+    public QQ_Button triangle;
+    public QQ_Button circle;
+    public QQ_Button cross;
+    public QQ_Button start;
+    public QQ_Button back;
+    public QQ_Button lBumper;
+    public QQ_Button rBumper;
+    public QQ_Joystick leftStick;
+    public QQ_Joystick rightStick;
+    public QQ_Trigger rightTrigger;
+    public QQ_Trigger leftTrigger;
 
     public QQ_Gamepad(Gamepad gamepad) {
-        update(gamepad);
+        dpad = new QQ_DPad();
+        square = new QQ_Button();
+        triangle = new QQ_Button();
+        circle = new QQ_Button();
+        cross = new QQ_Button();
+        start = new QQ_Button();
+        back = new QQ_Button();
+        lBumper = new QQ_Button();
+        rBumper = new QQ_Button();
+        leftStick = new QQ_Joystick();
+        rightStick = new QQ_Joystick();
+        rightTrigger = new QQ_Trigger();
+        leftTrigger = new QQ_Trigger();
     }
 
 
@@ -36,7 +48,6 @@ public class QQ_Gamepad {
         rightStick.update(gamepad.right_stick_x, gamepad.right_stick_y, gamepad.right_stick_button);
         rightTrigger.update(gamepad.right_trigger);
         leftTrigger.update(gamepad.left_trigger);
-
     }
 
     //todo: add bind stuff
