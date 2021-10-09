@@ -9,14 +9,18 @@ import org.firstinspires.ftc.teamcode.ftc16072.utils.QQ_Gamepad;
 public abstract class QQ_Opmode extends OpMode {
     public Robot robot = new Robot();
     protected QQ_Action curr;
-    public QQ_Gamepad gp1 = new QQ_Gamepad(gamepad1);
-    public QQ_Gamepad gp2 = new QQ_Gamepad(gamepad2);
+    public QQ_Gamepad gp1;
+    public QQ_Gamepad gp2;
     boolean usesGamepad = true;
 
 
     @Override
     public void init() {
         robot.init(hardwareMap);
+        if (usesGamepad) {
+            gp1 = new QQ_Gamepad(gamepad1);
+            gp2 = new QQ_Gamepad(gamepad2);
+        }
     }
 
     @Override
@@ -33,5 +37,6 @@ public abstract class QQ_Opmode extends OpMode {
         } else {
             telemetry.addData("State", "Done");
         }
+
     }
 }
