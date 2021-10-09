@@ -2,10 +2,14 @@ package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Robot {
-    List<QQ_Mechanism> mechanismList;
+    Lift lift = new Lift();
+    List<QQ_Mechanism> mechanismList = Arrays.asList(
+            lift
+    );
 
 
     /**
@@ -26,5 +30,12 @@ public class Robot {
      */
     public List<QQ_Mechanism> getMechanismList() {
         return mechanismList;
+    }
+
+
+    public void update(double time) {
+        for (QQ_Mechanism mechanism : mechanismList) {
+            mechanism.update(time);
+        }
     }
 }

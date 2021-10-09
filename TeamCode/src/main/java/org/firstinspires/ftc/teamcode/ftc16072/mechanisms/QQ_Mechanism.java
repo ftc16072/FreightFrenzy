@@ -30,4 +30,6 @@ public abstract class QQ_Mechanism {
     public String toString() {
         return this.getClass().getName();
     }
+
+    public abstract void update(double time);
 }
