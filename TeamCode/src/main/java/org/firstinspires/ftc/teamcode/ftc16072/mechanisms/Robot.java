@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Robot {
-    Lift lift = new Lift();
+    public DriveTrain driveTrain = new DriveTrain();
     List<QQ_Mechanism> mechanismList = Arrays.asList(
-            lift
+            //lift,
+            driveTrain
     );
 
 
@@ -18,9 +19,9 @@ public class Robot {
      * @param hwmap the hardware map to init the mechanisms with
      */
     public void init(HardwareMap hwmap) {
-        /*for (QQ_Mechanism mechanism : mechanismList) {
+        for (QQ_Mechanism mechanism : mechanismList) {
             mechanism.init(hwmap);
-        }*/
+        }
     }
 
     /**
