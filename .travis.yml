@@ -6,3 +6,5 @@ android:
   components:
     - build-tools-29.0.2
     - android-29
+script:
+  - ./gradlew build
