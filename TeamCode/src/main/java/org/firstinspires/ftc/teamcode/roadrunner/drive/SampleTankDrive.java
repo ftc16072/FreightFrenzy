@@ -317,4 +317,8 @@ public class SampleTankDrive extends TankDrive {
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
     }
+
+    public List<DcMotorEx> getMotors() {
+        return motors;
+    }
 }
