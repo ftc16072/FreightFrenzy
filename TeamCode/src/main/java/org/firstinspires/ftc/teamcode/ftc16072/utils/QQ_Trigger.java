@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.utils;
 
-public class QQ_Trigger {
+public class QQ_Trigger extends QQ_GamepadInput{
     double value;
     double lastValue;
 
@@ -20,8 +20,17 @@ public class QQ_Trigger {
         return value >= distance;
     }
 
+
     public void update(double value) {
         lastValue = this.value;
         this.value = value;
+    }
+
+
+    public boolean state() {
+        if (condition == Condition.PAST) {
+            return pushedIn(args[0]);
+        }
+        return false;
     }
 }
