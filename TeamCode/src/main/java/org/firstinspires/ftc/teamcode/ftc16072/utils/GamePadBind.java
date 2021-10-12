@@ -13,7 +13,7 @@ public class GamePadBind {
 
     public void run(QQ_Opmode opmode){
         if(input.state()){
-            action.run(opmode);
+            action = action.run(opmode);
         }
     }
 }
