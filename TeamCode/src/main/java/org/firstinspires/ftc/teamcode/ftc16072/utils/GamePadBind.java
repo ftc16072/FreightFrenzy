@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
 public class GamePadBind {
     QQ_GamepadInput input;
     QQ_Action action;
+
     public GamePadBind(QQ_GamepadInput input, QQ_Action action){
         this.input = input;
         this.action = action;
@@ -16,4 +17,6 @@ public class GamePadBind {
             action = action.run(opmode);
         }
     }
+
+
 }

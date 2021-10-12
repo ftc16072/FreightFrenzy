@@ -62,4 +62,8 @@ public class QQ_Joystick extends QQ_GamepadInput{
                 return false;
         }
     }
+
+    double value(){
+        return location.getY(DistanceUnit.CM);
+    }
 }

@@ -33,4 +33,10 @@ public class QQ_Trigger extends QQ_GamepadInput{
         }
         return false;
     }
+
+    @Override
+    double value() {
+        return value;
+    }
+
 }

@@ -38,4 +38,11 @@ public class DriveTrain extends QQ_Mechanism {
     public void drive(double leftSpeed, double rightSpeed){
         tankDrive.setMotorPowers(leftSpeed, rightSpeed);
     }
+
+    public double getLeftSpeed(){
+        return tankDrive.getWheelVelocities().get(0);
+    }
+    public double getRightSpeed(){
+        return tankDrive.getWheelVelocities().get(1);
+    }
 }
