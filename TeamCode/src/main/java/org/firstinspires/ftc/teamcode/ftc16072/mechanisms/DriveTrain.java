@@ -6,17 +6,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.QQ_Test;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.Test_Motor;
-import org.firstinspires.ftc.teamcode.roadrunner.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.QQ_TankDrive;
+
+import com.acmerobotics.roadrunner.drive.TankDrive;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DriveTrain extends QQ_Mechanism {
-    SampleTankDrive tankDrive;
+    QQ_TankDrive tankDrive;
 
     @Override
     public void init(HardwareMap hwMap) {
-        tankDrive = new SampleTankDrive(hwMap);
+        tankDrive = new QQ_TankDrive(hwMap);
         tankDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
