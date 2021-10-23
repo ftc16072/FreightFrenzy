@@ -105,6 +105,7 @@ class Lift extends QQ_Mechanism {
     }
 
     public void update(double time) {
+    /*
         double elapsed = time - start;
         MotionState desiredState = liftProfile.get(elapsed);
 
@@ -115,6 +116,8 @@ class Lift extends QQ_Mechanism {
         double correction = controller.update(liftMotor.getCurrentPosition(), liftMotor.getVelocity());
 
         liftMotor.setPower(correction);
+
+     */
     }
 
 
