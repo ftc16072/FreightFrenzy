@@ -31,6 +31,7 @@ public class QQ_Gamepad {
         rightStick = new QQ_Joystick();
         rightTrigger = new QQ_Trigger();
         leftTrigger = new QQ_Trigger();
+        update(gamepad);
     }
 
 

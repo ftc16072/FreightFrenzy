@@ -6,6 +6,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Robot {
+
+    public enum ControlScheme {
+        FRARCADE,
+        TANK,
+        ARCADE
+    }
+
+    public Nav nav = new Nav(this);
+    public ControlScheme controlScheme = ControlScheme.FRARCADE;
     public DriveTrain driveTrain = new DriveTrain();
     List<QQ_Mechanism> mechanismList = Arrays.asList(
             //lift,

@@ -14,6 +14,8 @@ public class PassingBind extends GamePadBind {
 
     @Override
     public void run(QQ_Opmode opmode) {
-        action.run(opmode, input.value());
+        double[] values;
+        values = input.value();
+        action.run(opmode, values);
     }
 }

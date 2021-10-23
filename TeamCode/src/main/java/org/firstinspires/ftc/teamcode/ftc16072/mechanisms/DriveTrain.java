@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.QQ_Test;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.Test_Motor;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.QQ_TankDrive;
@@ -37,14 +38,20 @@ public class DriveTrain extends QQ_Mechanism {
 
     }
 
-    public void drive(double leftSpeed, double rightSpeed){
+    public void drive(double leftSpeed, double rightSpeed) {
         tankDrive.setMotorPowers(leftSpeed, rightSpeed);
     }
 
-    public double getLeftSpeed(){
+    public double getLeftSpeed() {
         return tankDrive.getWheelVelocities().get(0);
     }
-    public double getRightSpeed(){
+
+    public double getRightSpeed() {
         return tankDrive.getWheelVelocities().get(1);
+    }
+
+    public double getHeading(AngleUnit au) {
+        return au.fromRadians(tankDrive.getExternalHeading());
+
     }
 }

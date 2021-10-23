@@ -19,5 +19,5 @@ abstract public class QQ_GamepadInput {
     }
     abstract boolean state();
 
-    abstract double value();
+    abstract double[] value();
 }

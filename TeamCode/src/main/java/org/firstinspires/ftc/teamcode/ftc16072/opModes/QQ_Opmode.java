@@ -29,6 +29,7 @@ public abstract class QQ_Opmode extends OpMode {
             gp1.update(gamepad1);
             gp2.update(gamepad2);
         }
+
         robot.update(time);
 
         if (curr != null) {
