@@ -21,7 +21,8 @@ public class Teleop extends QQ_Opmode {
     public void init() {
         super.init();
         bindings = Arrays.asList(
-                new PassingBind(gp1.leftStick, new DriveAction())
+                new PassingBind(gp1.leftStick, new DriveAction()),
+                new PassingBind(gp1.rightStick, new TurnTo(AngleUnit.RADIANS))
         );
     }
 

@@ -23,4 +23,12 @@ public class Nav {
         }
     }
 
+    public boolean turnTo(double angle, AngleUnit au){
+
+        if(!robot.driveTrain.tankDrive.isBusy()){
+            robot.driveTrain.tankDrive.turnAsync(au.toRadians(angle));
+        }
+        return !robot.driveTrain.tankDrive.isBusy();
+    }
+
 }
