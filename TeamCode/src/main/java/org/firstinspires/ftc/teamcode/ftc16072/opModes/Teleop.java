@@ -7,6 +7,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DriveAction;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetLeftPower;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetRightPower;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.TurnTo;
 import org.firstinspires.ftc.teamcode.ftc16072.utils.GamePadBind;
 import org.firstinspires.ftc.teamcode.ftc16072.utils.PassingBind;
 import org.firstinspires.ftc.teamcode.ftc16072.utils.QQ_Gamepad;
@@ -16,8 +17,6 @@ import java.util.List;
 
 @TeleOp
 public class Teleop extends QQ_Opmode {
-    List<GamePadBind> bindings;
-
     @Override
     public void init() {
         super.init();
@@ -30,9 +29,7 @@ public class Teleop extends QQ_Opmode {
     @Override
     public void loop() {
         super.loop();
-        for (GamePadBind bind : bindings) {
-            bind.run(this);
-        }
+        checkBinds();
 
     }
 }
