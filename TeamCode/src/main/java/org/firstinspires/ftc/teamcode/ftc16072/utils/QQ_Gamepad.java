@@ -51,7 +51,5 @@ public class QQ_Gamepad {
         leftTrigger.update(gamepad.left_trigger);
     }
 
-    //todo: add bind stuff
-
 
 }
