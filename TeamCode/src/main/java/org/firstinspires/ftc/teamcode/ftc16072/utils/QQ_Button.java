@@ -47,4 +47,13 @@ public class QQ_Button extends QQ_GamepadInput{
                 return false;
         }
     }
+
+    @Override
+    double[] value() {
+        double[] value = new double[0];
+        if (state) {
+            value[0] = 1;
+        }
+        return value;
+    }
 }

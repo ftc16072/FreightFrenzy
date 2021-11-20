@@ -31,6 +31,7 @@ public class QQ_Gamepad {
         rightStick = new QQ_Joystick();
         rightTrigger = new QQ_Trigger();
         leftTrigger = new QQ_Trigger();
+        update(gamepad);
     }
 
 
@@ -49,8 +50,6 @@ public class QQ_Gamepad {
         rightTrigger.update(gamepad.right_trigger);
         leftTrigger.update(gamepad.left_trigger);
     }
-
-    //todo: add bind stuff
 
 
 }

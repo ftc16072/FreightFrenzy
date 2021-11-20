@@ -16,6 +16,8 @@ abstract public class QQ_GamepadInput {
         NEWRELEASED,
         PAST,
         ANGLE
-    };
+    }
     abstract boolean state();
+
+    abstract double[] value();
 }

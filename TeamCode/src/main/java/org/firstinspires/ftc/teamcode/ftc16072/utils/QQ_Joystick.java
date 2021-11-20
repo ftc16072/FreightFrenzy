@@ -62,4 +62,13 @@ public class QQ_Joystick extends QQ_GamepadInput{
                 return false;
         }
     }
+
+    double[] value() {
+        double[] values = new double[4];
+        values[0] = location.getTheta(AngleUnit.RADIANS);
+        values[1] = location.getR(DistanceUnit.CM);
+        values[2] = location.getX(DistanceUnit.CM);
+        values[3] = location.getY(DistanceUnit.CM);
+        return values;
+    }
 }

@@ -1,13 +1,15 @@
-package org.firstinspires.ftc.teamcode.roadrunner.drive;
+package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ANG_ACCEL;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.TRACK_WIDTH;
-import static org.firstinspires.ftc.teamcode.roadrunner.drive.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants.encoderTicksToInches;
+
+import android.app.DownloadManager;
 
 import androidx.annotation.NonNull;
 
@@ -31,15 +33,16 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.teamcode.ftc16072.utils.DriveConstants;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.roadrunner.trajectorysequence.TrajectorySequenceRunner;
-import org.firstinspires.ftc.teamcode.roadrunner.util.LynxModuleUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +51,7 @@ import java.util.List;
  * Simple tank drive hardware implementation for REV hardware.
  */
 @Config
-public class SampleTankDrive extends TankDrive {
+public class QQ_TankDrive extends TankDrive {
     public static PIDCoefficients AXIAL_PID = new PIDCoefficients(0, 0, 0);
     public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0, 0, 0);
 
@@ -72,13 +75,11 @@ public class SampleTankDrive extends TankDrive {
 
     private VoltageSensor batteryVoltageSensor;
 
-    public SampleTankDrive(HardwareMap hardwareMap) {
+    public QQ_TankDrive(HardwareMap hardwareMap) {
         super(DriveConstants.kV, DriveConstants.kA, DriveConstants.kStatic, TRACK_WIDTH);
 
         follower = new RamseteFollower(B, ZETA,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
-
-        LynxModuleUtil.ensureMinimumFirmwareVersion(hardwareMap);
 
         batteryVoltageSensor = hardwareMap.voltageSensor.iterator().next();
 
@@ -97,10 +98,12 @@ public class SampleTankDrive extends TankDrive {
         // BNO055IMUUtil.remapAxes(imu, AxesOrder.XYZ, AxesSigns.NPN);
 
         // add/remove motors depending on your robot (e.g., 6WD)
-        DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        DcMotorEx leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
-        DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, "left_motor_front");
+        DcMotorEx leftRear = hardwareMap.get(DcMotorEx.class, "left_motor_back");
+        DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "right_motor_back");
+        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "right_motor_front");
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
         leftMotors = Arrays.asList(leftFront, leftRear);
@@ -317,4 +320,9 @@ public class SampleTankDrive extends TankDrive {
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
     }
+
+    public List<DcMotorEx> getMotors() {
+        return motors;
+    }
 }
+
