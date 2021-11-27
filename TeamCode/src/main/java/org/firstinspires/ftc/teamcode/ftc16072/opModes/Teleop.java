@@ -21,8 +21,7 @@ public class Teleop extends QQ_Opmode {
     public void init() {
         super.init();
         bindings = Arrays.asList(
-                new PassingBind(gp1.leftStick, new DriveAction()),
-                new PassingBind(gp1.rightStick, new TurnTo(AngleUnit.RADIANS))
+
         );
     }
 
@@ -31,6 +30,9 @@ public class Teleop extends QQ_Opmode {
     public void loop() {
         super.loop();
         checkBinds();
+        robot.nav.driveArc(gp1.leftStick.location.getTheta(AngleUnit.RADIANS), gp1.leftStick.location.getR(DistanceUnit.CM));
+        robot.nav.turnTo(gp1.rightStick.location.getTheta(AngleUnit.RADIANS), AngleUnit.RADIANS);
+
 
     }
 }
