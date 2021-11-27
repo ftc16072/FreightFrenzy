@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -29,6 +30,10 @@ public class Nav {
             robot.driveTrain.tankDrive.turnAsync(au.toRadians(angle));
         }
         return !robot.driveTrain.tankDrive.isBusy();
+    }
+
+    public void setStartPose(Pose2d pose2d){
+        robot.driveTrain.tankDrive.setPoseEstimate(pose2d);
     }
 
 }

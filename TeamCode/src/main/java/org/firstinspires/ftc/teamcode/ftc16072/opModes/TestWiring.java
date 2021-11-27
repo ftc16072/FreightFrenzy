@@ -44,12 +44,4 @@ public class TestWiring extends QQ_Opmode {
 
     }
 
-    private int updatePosition(int number, int max) {
-        if (number >= max) {
-            number = 0;
-        } else if (number <= 0) {
-            number = max;
-        }
-        return number;
-    }
 }

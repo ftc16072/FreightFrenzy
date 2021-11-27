@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -13,6 +15,7 @@ import com.acmerobotics.roadrunner.drive.TankDrive;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class DriveTrain extends QQ_Mechanism {
     QQ_TankDrive tankDrive;
@@ -35,7 +38,7 @@ public class DriveTrain extends QQ_Mechanism {
 
     @Override
     public void update(double time) {
-
+        tankDrive.update();
     }
 
     public void drive(double leftSpeed, double rightSpeed) {
@@ -43,15 +46,31 @@ public class DriveTrain extends QQ_Mechanism {
     }
 
     public double getLeftSpeed() {
-        return tankDrive.getWheelVelocities().get(0);
+        return Objects.requireNonNull(tankDrive.getWheelVelocities()).get(0);
     }
 
     public double getRightSpeed() {
-        return tankDrive.getWheelVelocities().get(1);
+        return Objects.requireNonNull(tankDrive.getWheelVelocities()).get(1);
     }
 
     public double getHeading(AngleUnit au) {
         return au.fromRadians(tankDrive.getExternalHeading());
+
+    }
+
+    public Pose2d poseEst(){
+        return tankDrive.getPoseEstimate();
+    }
+
+    public boolean isBusy(){
+        return tankDrive.isBusy();
+    }
+
+    public boolean followAsynch(Trajectory trajectory){
+        if(!isBusy()){
+            tankDrive.followTrajectoryAsync(trajectory);
+        }
+        return isBusy();
 
     }
 }
