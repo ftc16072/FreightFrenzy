@@ -44,4 +44,25 @@ public class Polar {
     public double getTheta(AngleUnit au) {
         return au.fromRadians(theta);
     }
+    /**
+     * rotates the polar component by a certain angle counter clockwise
+     *
+     * @param heading   angle to subtract
+     * @param angleUnit angle unit that angle is in
+     * @return new polar angle
+     */
+    public Polar rotateCCW(double heading, AngleUnit angleUnit) {
+        return new Polar(theta - angleUnit.toRadians(heading), AngleUnit.RADIANS, r, DistanceUnit.CM);
+    }
+
+    /**
+     * rotates the polar component by a certain angle clockwise
+     *
+     * @param heading   angle to add
+     * @param angleUnit angle unit that angle is in
+     * @return new polar angle
+     */
+    public Polar rotateCW(double heading, AngleUnit angleUnit) {
+        return new Polar(theta + angleUnit.toRadians(heading), AngleUnit.RADIANS, r, DistanceUnit.CM);
+    }
 }
