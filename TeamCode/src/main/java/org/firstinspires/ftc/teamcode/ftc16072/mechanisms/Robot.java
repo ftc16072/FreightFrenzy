@@ -17,11 +17,12 @@ public class Robot {
     public ControlScheme controlScheme = ControlScheme.FRARCADE;
     public DriveTrain driveTrain = new DriveTrain();
     public Intake intake = new Intake();
+    public Duck duck = new Duck();
     List<QQ_Mechanism> mechanismList = Arrays.asList(
             //lift,
             driveTrain,
-            intake
-
+            intake,
+            duck
     );
 
 
