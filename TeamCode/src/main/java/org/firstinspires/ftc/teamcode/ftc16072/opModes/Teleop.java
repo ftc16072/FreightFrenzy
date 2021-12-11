@@ -20,17 +20,21 @@ public class Teleop extends QQ_Opmode {
     @Override
     public void init() {
         super.init();
-        bindings = Arrays.asList(
-                new PassingBind(gp1.leftStick, new DriveAction()),
-                new PassingBind(gp1.rightStick, new TurnTo(AngleUnit.RADIANS))
-        );
     }
 
 
     @Override
     public void loop() {
         super.loop();
-        checkBinds();
+        //checkBinds();
+        robot.nav.arcadeDrive(gp1.rightStick.location.getX(DistanceUnit.CM), gp1.leftStick.location.getY(DistanceUnit.CM));
+        if(gp1.cross.isPressed()){
+            robot.intake.intake();
+        } else {
+            robot.intake.off();
+        }
+
+
 
     }
 }

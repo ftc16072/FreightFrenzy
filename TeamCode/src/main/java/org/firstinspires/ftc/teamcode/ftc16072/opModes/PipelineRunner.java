@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.CubeDetectionPipeline;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.GreenRectangle;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.LineDetection;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -23,9 +25,13 @@ import java.util.List;
 public class PipelineRunner extends QQ_Opmode {
     GreenRectangle greenRectangle = new GreenRectangle();
     LineDetection lineDetection = new LineDetection();
+    CubeDetectionPipeline cubeDetectionPipeline = new CubeDetectionPipeline(telemetry);
+    DuckLocation duckLocation = new DuckLocation(telemetry);
     List<OpenCvPipeline> pipelines = Arrays.asList(
             lineDetection,
-            greenRectangle
+            greenRectangle,
+            cubeDetectionPipeline,
+            duckLocation
     );
     private int currentPipeline;
     OpenCvWebcam webcam;
@@ -64,14 +70,5 @@ public class PipelineRunner extends QQ_Opmode {
         }
         telemetry.addData("Pipeline", pipelines.get(currentPipeline).getClass().getSimpleName());
         webcam.setPipeline(pipelines.get(currentPipeline));
-    }
-
-    private int updatePosition(int number, int max) {
-        if (number >= max) {
-            number = 0;
-        } else if (number <= 0) {
-            number = max;
-        }
-        return number;
     }
 }

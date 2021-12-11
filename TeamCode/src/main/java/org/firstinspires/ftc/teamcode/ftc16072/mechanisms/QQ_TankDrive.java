@@ -101,9 +101,9 @@ public class QQ_TankDrive extends TankDrive {
         DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, "left_motor_front");
         DcMotorEx leftRear = hardwareMap.get(DcMotorEx.class, "left_motor_back");
         DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "right_motor_back");
-        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
         DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "right_motor_front");
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
         leftMotors = Arrays.asList(leftFront, leftRear);

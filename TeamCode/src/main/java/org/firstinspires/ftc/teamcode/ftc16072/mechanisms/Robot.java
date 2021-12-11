@@ -16,9 +16,13 @@ public class Robot {
     public Nav nav = new Nav(this);
     public ControlScheme controlScheme = ControlScheme.FRARCADE;
     public DriveTrain driveTrain = new DriveTrain();
+    public Intake intake = new Intake();
+    public Duck duck = new Duck();
     List<QQ_Mechanism> mechanismList = Arrays.asList(
             //lift,
-            driveTrain
+            driveTrain,
+            intake,
+            duck
     );
 
 
