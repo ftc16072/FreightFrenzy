@@ -18,10 +18,11 @@ public class Robot {
     public DriveTrain driveTrain = new DriveTrain();
     public Intake intake = new Intake();
     public Duck duck = new Duck();
+    public Lift lift = new Lift();
     List<QQ_Mechanism> mechanismList = Arrays.asList(
-            //lift,
-            driveTrain,
+            lift,
             intake,
+            driveTrain,
             duck
     );
 
