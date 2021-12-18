@@ -16,7 +16,7 @@ public class DualAction extends QQ_Action {
     public QQ_Action run(QQ_Opmode opmode) {
         a1 = a1.run(opmode);
         a2 = a2.run(opmode);
-        if (a1.nextAction == null && a2.nextAction == null) {
+        if (a1 == null && a2 == null) {
             return this.nextAction;
         } else {
             return this;
