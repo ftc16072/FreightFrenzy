@@ -13,11 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Config
-public class Duck extends QQ_Mechanism{
+public class Duck extends QQ_Mechanism {
     DcMotorEx duck;
     Servo release;
-    public static final double open = 0;
-    public static final double close = 0;
+    public static final double OPEN = .75;
+    public static final double CLOSE = 1;
 
     /**
      * forces the mechanism to have an init
@@ -39,7 +39,7 @@ public class Duck extends QQ_Mechanism{
     public List<QQ_Test> getTests() {
         return Arrays.asList(
                 new Test_Motor("duck", duck, 0.2),
-                new Test_Servo("release", release, open, close)
+                new Test_Servo("release", release, OPEN, CLOSE)
         );
     }
 
@@ -47,4 +47,28 @@ public class Duck extends QQ_Mechanism{
     public void update(double time) {
 
     }
+
+    public void release(boolean position) {
+        //true = open, false = closed
+        if (position) {
+            release.setPosition(this.OPEN);
+        } else {
+            release.setPosition(this.CLOSE);
+        }
+    }
+
+    public void spin(boolean redAlliance) {
+        if (redAlliance) {
+            duck.setPower(-.2);
+        } else {
+            duck.setPower(.2);
+        }
+
+    }
+
+    public void stopSpin() {
+        duck.setPower(0);
+    }
+
+
 }

@@ -21,7 +21,7 @@ public abstract class QQ_Opmode extends OpMode {
     protected boolean usesGamepad = true;
     protected boolean initLoopConfig = false;
     List<GamePadBind> bindings;
-    AutoUI.Alliance alliance;
+    public static AutoUI.Alliance alliance;
 
     @Override
     public void init() {
@@ -47,7 +47,7 @@ public abstract class QQ_Opmode extends OpMode {
         robot.update(time);
         if (curr != null) {
             telemetry.addData("State", curr);
-            curr.run(this);
+            curr = curr.run(this);
         } else {
             telemetry.addData("State", "No Action");
         }

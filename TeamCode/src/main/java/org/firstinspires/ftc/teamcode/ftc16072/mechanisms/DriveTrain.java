@@ -23,7 +23,7 @@ public class DriveTrain extends QQ_Mechanism {
     @Override
     public void init(HardwareMap hwMap) {
         tankDrive = new QQ_TankDrive(hwMap);
-        tankDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        tankDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override

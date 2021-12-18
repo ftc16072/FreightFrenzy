@@ -4,6 +4,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+import java.util.List;
 
 public class Nav {
     Robot robot;
@@ -13,23 +16,16 @@ public class Nav {
         this.robot = robot;
     }
 
-    public void arcadeDrive(double rotateSpeed, double throttle){
-            double left = throttle - rotateSpeed;
-            double right = throttle + rotateSpeed;
-            double max = Math.max(left, right);
-            if(max > maxSpeed){
-                left/= max;
-                left *= maxSpeed;
-                right/= max;
-                right *= maxSpeed;
-            }
-            robot.driveTrain.drive(left, right);
+    public void arcadeDrive(double rotateSpeed, double throttle) {
+        double left = -throttle + rotateSpeed;
+        double right = -throttle - rotateSpeed;
+        robot.driveTrain.drive(left, right);
 
     }
 
     public void driveArc(double theta, double r) {
         System.out.println("QQ************");
-        theta = AngleUnit.normalizeRadians(theta + Math.PI/2);
+        theta = AngleUnit.normalizeRadians(theta + Math.PI / 2);
         System.out.println("QQ theta , r" + theta + ", " + r);
         double diff = theta - robot.driveTrain.getHeading(AngleUnit.RADIANS);
         diff = AngleUnit.normalizeRadians(diff);
@@ -47,14 +43,23 @@ public class Nav {
 
     public boolean turnTo(double angle, AngleUnit au){
 
-        if(!robot.driveTrain.tankDrive.isBusy()){
+        if (!robot.driveTrain.tankDrive.isBusy()) {
             robot.driveTrain.tankDrive.turnAsync(au.toRadians(angle));
         }
         return !robot.driveTrain.tankDrive.isBusy();
     }
 
-    public void setStartPose(Pose2d pose2d){
+    public void setStartPose(Pose2d pose2d) {
         robot.driveTrain.tankDrive.setPoseEstimate(pose2d);
+    }
+
+    public boolean driveCM(double distance) {
+        List<Double> currentDistance = robot.driveTrain.tankDrive.getWheelPositions();
+        double leftDistance = DistanceUnit.INCH.toCm(currentDistance.get(0));
+        double rightDistance = DistanceUnit.INCH.toCm(currentDistance.get(1));
+        robot.driveTrain.drive(distance - leftDistance * .2, distance - rightDistance * .2);
+        double avgDistance = leftDistance + rightDistance / 2;
+        return avgDistance >= distance - 2;
     }
 
 }
