@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.QQ_Test;
@@ -12,11 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Intake extends QQ_Mechanism {
-    DcMotorEx intake;
+    DcMotorEx intake1;
 
-    public Intake(){
+    DcMotorEx intake2;
+
+    public Intake() {
 
     }
+
     /**
      * forces the mechanism to have an init
      *
@@ -24,7 +27,9 @@ public class Intake extends QQ_Mechanism {
      */
     @Override
     public void init(HardwareMap hwMap) {
-        intake = hwMap.get(DcMotorEx.class, "intake");
+        intake1 = hwMap.get(DcMotorEx.class, "intake1");
+        intake1.setDirection(DcMotorSimple.Direction.REVERSE);
+        intake2 = hwMap.get(DcMotorEx.class, "intake2");
     }
 
     /**
@@ -35,7 +40,8 @@ public class Intake extends QQ_Mechanism {
     @Override
     public List<QQ_Test> getTests() {
         return Arrays.asList(
-                new Test_Motor("intake", intake, .2)
+                new Test_Motor("intake1", intake1, .2),
+                new Test_Motor("intake2", intake2, .2)
         );
     }
 
@@ -44,13 +50,16 @@ public class Intake extends QQ_Mechanism {
 
     }
 
-    public void intake(){
-        intake.setPower(0.8);
+    public void intake() {
+        intake1.setPower(0.8);
+        intake2.setPower(0.8);
     }
-    public void outtake(){
-        intake.setPower(-0.4);
+    public void outtake() {
+        intake1.setPower(-0.4);
+        intake2.setPower(-0.4);
     }
-    public void off(){
-        intake.setPower(0);
+    public void off() {
+        intake1.setPower(0);
+        intake2.setPower(0);
     }
 }
