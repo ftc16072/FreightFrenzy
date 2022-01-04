@@ -31,8 +31,6 @@ public class Lift extends QQ_Mechanism {
     public static double vPass = .725;
     public static int intake = 200;
     public static int pass = 1200;
-    public static int lv1 = 100; //3+ inches from ground
-    public static int lv2 = 900; //8.5+ inches from ground
     public static int lv3 = 1750; //14.75+ inches from ground, 1750 is highest value
     public static State state = State.INTAKE;
     private State waitingState = State.LVL3;
@@ -126,9 +124,7 @@ public class Lift extends QQ_Mechanism {
             case INTAKE:
                 return intake;
             case LVL1:
-                return lv1;
             case LVL2:
-                return lv2;
             case LVL3:
                 return lv3;
             case PASS:
