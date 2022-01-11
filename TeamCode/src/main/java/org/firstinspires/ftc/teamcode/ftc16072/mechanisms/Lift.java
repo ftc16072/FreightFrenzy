@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.DualTest;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.QQ_Test;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.Test_Motor;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.tests.Test_Servo;
@@ -20,25 +19,21 @@ import java.util.List;
 @Config
 public class Lift extends QQ_Mechanism {
     private DcMotorEx liftMotor;
-    private Servo liftServoLeft;
-    private Servo liftServoRight;
+    private Servo v4b;
     private DigitalChannel bottomSensor;
     public static PIDFCoefficients coeff = new PIDFCoefficients(5, 0, 0, 0);
     public static double vlv1 = 0.27;
     public static double vlv2 = 0.25;
     public static double vlv3 = 0.2;
+    public static double vmax = 0.5;
     public static double vintake = .75;
-    public static double vPass = .725;
     public static int intake = 200;
-    public static int pass = 1200;
-    public static int lv3 = 1750; //14.75+ inches from ground, 1750 is highest value
-    public static State state = State.INTAKE;
-    private State waitingState = State.LVL3;
-    private double waitingTime = 0;
+    public static int out = 1750;
+    public static int max = 2000;
+    public State state = State.INTAKE;
 
     public enum State {
         INTAKE,
-        PASS,
         LVL1,
         LVL2,
         LVL3
@@ -54,9 +49,7 @@ public class Lift extends QQ_Mechanism {
     public void init(HardwareMap hwMap) {
         liftMotor = hwMap.get(DcMotorEx.class, "Lift");
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        liftServoLeft = hwMap.get(Servo.class, "leftServo");
-        liftServoRight = hwMap.get(Servo.class, "rightServo");
-        //liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        v4b = hwMap.get(Servo.class, "v4b");
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
@@ -69,53 +62,33 @@ public class Lift extends QQ_Mechanism {
         return Arrays.asList(
                 new Test_Motor("Lift-Up", liftMotor, 0.2),
                 new Test_Motor("Lift-down", liftMotor, -0.2),
-                new DualTest("v4b", new Test_Servo("Left", liftServoLeft, vintake, vlv3), new Test_Servo("Right", liftServoRight, vlv1, vlv2))
+                new Test_Servo("v4b", v4b, vintake, vlv3)
         );
     }
 
     public void setState(State state, double time) {
-        if (state == State.LVL3 || state == State.LVL2 || state == State.LVL1) {
-            if (this.state == State.INTAKE) {
-                System.out.println("QQ -- intake to HI");
-                this.state = State.PASS;
-                this.waitingState = state;
-                this.waitingTime = time;
-            } else {
-                this.state = state;
-            }
-        } else if (state == State.INTAKE) {
-            if (this.state == State.LVL3 || this.state == State.LVL2 || this.state == State.LVL1) {
-                System.out.println("QQ -- Hi to Intake");
-                this.state = State.PASS;
-                this.waitingState = state;
-                this.waitingTime = time;
-            } else {
-                this.state = state;
-            }
-        } else {
-            this.state = state;
-        }
+        this.state = state;
         liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, coeff);
         liftMotor.setTargetPosition(liftPosition());
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor.setPower(1);
 
-        //v4b servos
-        liftServoLeft.setPosition(servoPosition());
-        liftServoRight.setPosition(servoPosition());
+        //v4b servo
+        v4b.setPosition(servoPosition());
 
     }
 
 
     public void update(double time) {
         //motor stuff
+        if(liftMotor.getPower() > 0 && !extendable()){
+            liftMotor.setPower(0);
+        }
+        if(liftMotor.getPower() <0 && !retractable()){
+            liftMotor.setPower(0);
+        }
 
         System.out.println("QQ -- " + state);
-
-        if ((state == State.PASS) && (time >= this.waitingTime + 1)) {
-            System.out.println("QQ -- Set state to new state");
-            state = waitingState;
-        }
 
     }
 
@@ -126,12 +99,54 @@ public class Lift extends QQ_Mechanism {
             case LVL1:
             case LVL2:
             case LVL3:
-                return lv3;
-            case PASS:
-                return pass;
-
+            default:
+                return out;
         }
-        return lv3;
+
+    }
+    public void extend(double speed){
+        if(speed < 0){
+            retract(speed);
+        } else {
+            liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            if (extendable()) {
+                liftMotor.setPower(speed);
+            }
+        }
+    }
+
+    public void retract(double speed){
+        if(speed > 0){
+            extend(speed);
+        } else {
+            liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            if(retractable()){
+                liftMotor.setPower(speed);
+            }
+        }
+    }
+
+    public void extendV4b(){
+        v4b.setPosition(vlv1);
+    }
+
+    public void up(double amountBy){
+        v4b.setPosition(Math.min(v4b.getPosition() + amountBy,vmax));
+    }
+
+    public void down(double amountBy){
+        v4b.setPosition(Math.max(v4b.getPosition() - amountBy, vintake));
+    }
+
+    public void stop(){
+        liftMotor.setPower(0);
+    }
+
+    private boolean extendable(){
+        return liftMotor.getCurrentPosition() < max;
+    }
+    private boolean retractable(){
+        return liftMotor.getCurrentPosition() > 0;
     }
 
     public double servoPosition() {
@@ -143,12 +158,9 @@ public class Lift extends QQ_Mechanism {
             case LVL2:
                 return vlv2;
             case LVL3:
+            default:
                 return vlv3;
-            case PASS:
-                return vPass;
-
         }
-        return vlv3;
     }
 
 
