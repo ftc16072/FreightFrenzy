@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckStrat;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.OtherStrat;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.QQ_Action;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetAutoStartPose;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
@@ -26,7 +27,7 @@ public class Auto extends QQ_Opmode {
     OpenCvWebcam webcam;
     DuckLocation duckLocation = new DuckLocation(telemetry);
     DuckStrat duckStrat = new DuckStrat();
-    QQ_Action otherStrat;
+    QQ_Action otherStrat = new OtherStrat();
 
 
     @Override
@@ -63,22 +64,20 @@ public class Auto extends QQ_Opmode {
         hashMap = ui.getOptionsHashMap();
         alliance = (AutoUI.Alliance) hashMap.get("Alliance");
         barcodeLocation = duckLocation.getSlotSelected();
-        QQ_Action storage;
-        curr.setNext(new SetAutoStartPose(alliance, (AutoUI.Strategy) hashMap.get("Strategy")));
-        switch ((AutoUI.Strategy) Objects.requireNonNull(hashMap.get("Strategy"))){
-            case DUCK:
-                curr.setNext(duckStrat);
-            case OTHER:
-            default:
-                curr.setNext(otherStrat);
-        }
-
-
 
     }
 
     @Override
     public void start() {
+        curr.setNext(new SetAutoStartPose(alliance, (AutoUI.Strategy) hashMap.get("Strategy")));
+        switch ((AutoUI.Strategy) Objects.requireNonNull(hashMap.get("Strategy"))){
+            case DUCK:
+                curr.setNext(duckStrat);
+
+            case OTHER:
+            default:
+                curr.setNext(otherStrat);
+        }
         super.start();
         usesGamepad = false;
 

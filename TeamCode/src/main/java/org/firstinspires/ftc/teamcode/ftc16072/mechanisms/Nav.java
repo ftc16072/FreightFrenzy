@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
+import org.firstinspires.ftc.teamcode.ftc16072.utils.AutoUI;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Nav {
     public void arcadeDrive(double rotateSpeed, double throttle) {
         double left = -throttle + rotateSpeed;
         double right = -throttle - rotateSpeed;
-        robot.driveTrain.drive(left, right);
+        drivePower(left, right);
 
     }
 
@@ -34,9 +36,9 @@ public class Nav {
 
 
         if (diff >= 0) {
-            robot.driveTrain.drive(r/2, (r * factor)/2);
+            drivePower(r/2, (r * factor)/2);
         } else {
-            robot.driveTrain.drive((r * factor)/2, r/2);
+            drivePower((r * factor)/2, r/2);
         }
 
     }
@@ -57,9 +59,21 @@ public class Nav {
         List<Double> currentDistance = robot.driveTrain.tankDrive.getWheelPositions();
         double leftDistance = DistanceUnit.INCH.toCm(currentDistance.get(0));
         double rightDistance = DistanceUnit.INCH.toCm(currentDistance.get(1));
-        robot.driveTrain.drive(distance - leftDistance * .2, distance - rightDistance * .2);
+        drivePower(distance - leftDistance * .2, distance - rightDistance * .2);
         double avgDistance = leftDistance + rightDistance / 2;
         return avgDistance >= distance - 2;
     }
+
+    public void drivePower(double leftSpeed, double rightSpeed){
+        if(QQ_Opmode.alliance == AutoUI.Alliance.BLUE){
+            robot.driveTrain.drive(leftSpeed, rightSpeed);
+        } else {
+            robot.driveTrain.drive(-leftSpeed, -rightSpeed);
+        }
+    }
+
+
+
+
 
 }

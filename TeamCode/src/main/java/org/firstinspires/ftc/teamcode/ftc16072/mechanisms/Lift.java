@@ -66,7 +66,7 @@ public class Lift extends QQ_Mechanism {
         );
     }
 
-    public void setState(State state, double time) {
+    public void setState(State state) {
         this.state = state;
         liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, coeff);
         liftMotor.setTargetPosition(liftPosition());

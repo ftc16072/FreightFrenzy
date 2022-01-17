@@ -20,9 +20,12 @@ import java.util.List;
 
 @TeleOp
 public class BlueTeleop extends QQ_Opmode {
+
+
     @Override
     public void init() {
         super.init();
+        QQ_Opmode.alliance = AutoUI.Alliance.BLUE;
     }
 
 
@@ -32,9 +35,9 @@ public class BlueTeleop extends QQ_Opmode {
         //checkBinds();
 
         if (gp1.leftTrigger.pushedIn(.2)){
-            robot.nav.arcadeDrive(0, gp1.leftTrigger.getValue());
+            robot.nav.drivePower(gp1.leftTrigger.getValue(), gp1.leftTrigger.getValue());
         } else if (gp1.rightTrigger.pushedIn(.2)){
-            robot.nav.arcadeDrive(0, -gp1.rightTrigger.getValue());
+            robot.nav.drivePower(-gp1.rightTrigger.getValue(), -gp1.rightTrigger.getValue());
         } else {
             robot.nav.arcadeDrive(gp1.leftStick.location.getX(DistanceUnit.CM), gp1.leftStick.location.getY(DistanceUnit.CM));
         }
@@ -53,9 +56,9 @@ public class BlueTeleop extends QQ_Opmode {
 
 
         if (gp1.cross.isPressed()) {
-            robot.lift.setState(Lift.State.INTAKE, time);
+            robot.lift.setState(Lift.State.INTAKE);
         }  else if (gp1.triangle.isNewlyPressed()) {
-            robot.lift.setState(Lift.State.LVL3, time);
+            robot.lift.setState(Lift.State.LVL3);
         } else if (gp1.square.isNewlyPressed()){
             robot.lift.extendV4b();
         }  else {
