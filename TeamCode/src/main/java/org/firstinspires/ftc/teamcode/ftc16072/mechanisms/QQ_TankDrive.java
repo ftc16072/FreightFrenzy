@@ -99,11 +99,11 @@ public class QQ_TankDrive extends TankDrive {
 
         // add/remove motors depending on your robot (e.g., 6WD)
         DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, "left_motor_front");
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         DcMotorEx leftRear = hardwareMap.get(DcMotorEx.class, "left_motor_back");
         DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "right_motor_back");
-        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
         DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "right_motor_front");
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
         leftMotors = Arrays.asList(leftFront, leftRear);

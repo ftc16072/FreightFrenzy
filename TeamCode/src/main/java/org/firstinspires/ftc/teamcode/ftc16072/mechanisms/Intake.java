@@ -36,8 +36,8 @@ public class Intake extends QQ_Mechanism {
     @Override
     public void init(HardwareMap hwMap) {
         intake1 = hwMap.get(DcMotorEx.class, "intake1");
-        intake1.setDirection(DcMotorSimple.Direction.REVERSE);
         intake2 = hwMap.get(DcMotorEx.class, "intake2");
+        intake2.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     /**

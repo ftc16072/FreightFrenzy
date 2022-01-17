@@ -26,8 +26,8 @@ public class Duck extends QQ_Mechanism {
      */
     @Override
     public void init(HardwareMap hwMap) {
-        duck = hwMap.get(DcMotorEx.class, "duck");
-        release = hwMap.get(Servo.class, "release");
+        //duck = hwMap.get(DcMotorEx.class, "duck");
+        //release = hwMap.get(Servo.class, "release");
     }
 
     /**
@@ -38,8 +38,8 @@ public class Duck extends QQ_Mechanism {
     @Override
     public List<QQ_Test> getTests() {
         return Arrays.asList(
-                new Test_Motor("duck", duck, 0.2),
-                new Test_Servo("release", release, OPEN, CLOSE)
+                //new Test_Motor("duck", duck, 0.2),
+                //new Test_Servo("release", release, OPEN, CLOSE)
         );
     }
 

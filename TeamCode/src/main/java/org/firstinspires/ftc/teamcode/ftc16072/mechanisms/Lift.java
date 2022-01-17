@@ -49,6 +49,7 @@ public class Lift extends QQ_Mechanism {
     public void init(HardwareMap hwMap) {
         liftMotor = hwMap.get(DcMotorEx.class, "Lift");
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
         v4b = hwMap.get(Servo.class, "v4b");
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -71,7 +72,7 @@ public class Lift extends QQ_Mechanism {
         liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, coeff);
         liftMotor.setTargetPosition(liftPosition());
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        liftMotor.setPower(1);
+        liftMotor.setPower(.75);
 
         //v4b servo
         v4b.setPosition(servoPosition());

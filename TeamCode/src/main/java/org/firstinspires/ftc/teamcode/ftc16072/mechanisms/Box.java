@@ -13,8 +13,8 @@ import java.util.List;
 @Config
 public class Box extends QQ_Mechanism {
     Servo door;
-    public static double open = 0.45;
-    public static double close = 0.15;
+    public static double close = 0.45;
+    public static double open = 0.15;
 
     /**
      * forces the mechanism to have an init
