@@ -68,9 +68,9 @@ public abstract class QQ_Opmode extends OpMode {
     }
 
     public int updatePosition(int number, int max) {
-        if (number >= max) {
+        if (number > max) {
             number = 0;
-        } else if (number <= 0) {
+        } else if (number < 0) {
             number = max - 1;
         }
         return number;

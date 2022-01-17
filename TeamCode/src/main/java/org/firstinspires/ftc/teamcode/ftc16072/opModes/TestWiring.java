@@ -25,16 +25,16 @@ public class TestWiring extends QQ_Opmode {
     public void loop() {
         super.loop();
         if (gp1.dpad.up.isNewlyPressed() || gp2.dpad.up.isNewlyPressed()) {
-            currentMech = updatePosition(currentMech + 1, mechanismList.size());
+            currentMech = updatePosition(currentMech + 1, mechanismList.size() - 1);
         } else if (gp1.dpad.down.isNewlyPressed() || gp2.dpad.down.isNewlyPressed()) {
-            currentMech = updatePosition(currentMech - 1, mechanismList.size());
+            currentMech = updatePosition(currentMech - 1, mechanismList.size() - 1);
         }
         telemetry.addData("Mechanism", mechanismList.get(currentMech).toString());
         testsList = mechanismList.get(currentMech).getTests();
         if (gp1.dpad.right.isNewlyPressed() || gp2.dpad.right.isNewlyPressed()) {
-            currentTest = updatePosition(currentTest + 1, testsList.size());
+            currentTest = updatePosition(currentTest + 1, testsList.size() - 1);
         } else if (gp1.dpad.left.isNewlyPressed() || gp2.dpad.left.isNewlyPressed()) {
-            currentTest = updatePosition(currentTest - 1, testsList.size());
+            currentTest = updatePosition(currentTest - 1, testsList.size() - 1);
         }
 
         telemetry.addData("Test", testsList.get(currentTest).getDescription());
