@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -44,19 +43,12 @@ public class Auto extends QQ_Opmode {
         System.out.println("QQ -- THINGIES 3");
         System.out.flush();
         super.init();
-        System.out.println("QQ -- super");
-        System.out.flush();
         initLoopConfig = true;
         usesGamepad = true;
-        System.out.println("QQ -- variables");
-        System.out.flush();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-        System.out.println("QQ -- camera... sus");
-        System.out.flush();
+
         webcam.setPipeline(duckLocation);
-        System.out.println("QQ -- setpipeline");
-        System.out.flush();
 
         webcam.setMillisecondsPermissionTimeout(2500); // Timeout for obtaining permission is configurable. Set before opening.
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -70,11 +62,8 @@ public class Auto extends QQ_Opmode {
                 /*
                  * This will be called if the camera could not be opened
                  */
-
             }
         });
-        System.out.println("QQ -- open camera");
-
     }
 
     @Override
