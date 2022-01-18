@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -14,10 +15,9 @@ import java.util.List;
 
 @Config
 public class Duck extends QQ_Mechanism {
-    DcMotorEx duck;
-    Servo release;
-    public static final double OPEN = .75;
-    public static final double CLOSE = 1;
+    CRServo duckServoLeft;
+    CRServo duckServoRight;
+
 
     /**
      * forces the mechanism to have an init
@@ -26,8 +26,8 @@ public class Duck extends QQ_Mechanism {
      */
     @Override
     public void init(HardwareMap hwMap) {
-        //duck = hwMap.get(DcMotorEx.class, "duck");
-        //release = hwMap.get(Servo.class, "release");
+        duckServoLeft = hwMap.get(CRServo.class,"duckServoLeft");
+        duckServoRight = hwMap.get(CRServo.class,"duckServoRight");
     }
 
     /**
@@ -38,8 +38,8 @@ public class Duck extends QQ_Mechanism {
     @Override
     public List<QQ_Test> getTests() {
         return Arrays.asList(
-                //new Test_Motor("duck", duck, 0.2),
-                //new Test_Servo("release", release, OPEN, CLOSE)
+                new Test_Servo("duckServoLeft", (Servo) duckServoLeft, 1,0),
+                new Test_Servo("duckServoRight", (Servo) duckServoRight, 1, 0)
         );
     }
 
@@ -48,26 +48,26 @@ public class Duck extends QQ_Mechanism {
 
     }
 
-    public void release(boolean position) {
+    /*public void release(boolean position) {
         //true = open, false = closed
         if (position) {
             release.setPosition(this.OPEN);
         } else {
             release.setPosition(this.CLOSE);
         }
-    }
+    }*/
 
     public void spin(boolean redAlliance) {
-        if (redAlliance) {
-            duck.setPower(-.2);
-        } else {
-            duck.setPower(.2);
-        }
+
+            duckServoLeft.setPower(1);
+
+            duckServoRight.setPower(1);
 
     }
 
     public void stopSpin() {
-        duck.setPower(0);
+        duckServoLeft.setPower(0);
+        duckServoRight.setPower(0);
     }
 
 
