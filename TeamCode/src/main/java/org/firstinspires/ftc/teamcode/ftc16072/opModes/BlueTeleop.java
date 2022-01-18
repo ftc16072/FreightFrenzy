@@ -32,9 +32,9 @@ public class BlueTeleop extends QQ_Opmode {
         //checkBinds();
 
         if (gp1.leftTrigger.pushedIn(.2)){
-            robot.nav.arcadeDrive(0, gp1.leftTrigger.getValue());
+            robot.nav.arcadeDrive(0, -gp1.leftTrigger.getValue());
         } else if (gp1.rightTrigger.pushedIn(.2)){
-            robot.nav.arcadeDrive(0, -gp1.rightTrigger.getValue());
+            robot.nav.arcadeDrive(0, gp1.rightTrigger.getValue());
         } else {
             robot.nav.arcadeDrive(gp1.leftStick.location.getX(DistanceUnit.CM), gp1.leftStick.location.getY(DistanceUnit.CM));
         }
