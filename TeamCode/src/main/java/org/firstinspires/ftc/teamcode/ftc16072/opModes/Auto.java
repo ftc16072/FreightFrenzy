@@ -78,7 +78,7 @@ public class Auto extends QQ_Opmode {
     public void start() {
         super.start();
         usesGamepad = false;
-        curr = duckStrat
+        curr = duckStrat;
 
     }
 }
