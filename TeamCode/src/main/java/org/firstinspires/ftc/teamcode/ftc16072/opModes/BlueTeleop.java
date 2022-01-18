@@ -25,6 +25,7 @@ public class BlueTeleop extends QQ_Opmode {
     @Override
     public void init() {
         super.init();
+        QQ_Opmode.alliance = AutoUI.Alliance.BLUE;
     }
 
 

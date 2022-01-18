@@ -24,8 +24,9 @@ public class Auto extends QQ_Opmode {
     AutoUI ui;
     HashMap<String, QQUI.Options> hashMap;
     OpenCvWebcam webcam;
-    DuckLocation duckLocation;
-    DuckStrat duckStrat;
+    DuckLocation duckLocation = new DuckLocation(telemetry);
+    DuckStrat duckStrat = new DuckStrat();
+    QQ_Action otherStrat;
 
 
     @Override
