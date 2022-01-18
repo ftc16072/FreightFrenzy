@@ -59,7 +59,7 @@ public class Duck extends QQ_Mechanism {
 
     public void spin(boolean redAlliance) {
 
-            duckServoLeft.setPower(1);
+            duckServoLeft.setPower(-1);
 
             duckServoRight.setPower(1);
 
