@@ -73,6 +73,12 @@ public class BlueTeleop extends QQ_Opmode {
 
         robot.box.open(gp1.circle.isPressed());
 
+        //code for ducks
+        if(gp2.cross.isPressed()){
+            robot.duck.spin(true); //both spin for either alliance
+        } else {
+            robot.duck.stopSpin();
+        }
 
         /*
         if (gp1.square.isPressed()) {
