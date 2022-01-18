@@ -19,7 +19,7 @@ public class DuckLocation extends OpenCvPipeline{
     Mat slot1;
     Rect space2 = new Rect(126, 120, 50, 50);
     Mat slot2;
-    Rect space3 = new Rect(230, 120, 50, 50);
+    Rect space3 = new Rect(250, 120, 50, 50);
     Mat slot3;
     int slotSelected = -1;
 

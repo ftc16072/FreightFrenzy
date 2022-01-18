@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -21,24 +22,41 @@ import java.util.Objects;
 
 @Autonomous
 public class Auto extends QQ_Opmode {
-    AutoUI ui = new AutoUI(this);
+    AutoUI ui;
     HashMap<String, QQUI.Options> hashMap;
     OpenCvWebcam webcam;
-    DuckLocation duckLocation = new DuckLocation(telemetry);
-    DuckStrat duckStrat = new DuckStrat();
-    QQ_Action otherStrat;
+    DuckLocation duckLocation;
+    DuckStrat duckStrat;
 
 
     @Override
 
     public void init() {
+        System.out.println("QQ -- ???");
+        System.out.flush();
+
+        System.out.println("QQ -- THINGIES 1");
+        System.out.flush();
+        duckLocation = new DuckLocation(telemetry);
+        System.out.println("QQ -- THINGIES 2");
+        System.out.flush();
+        duckStrat = new DuckStrat();
+        System.out.println("QQ -- THINGIES 3");
+        System.out.flush();
         super.init();
+        System.out.println("QQ -- super");
+        System.out.flush();
         initLoopConfig = true;
         usesGamepad = true;
+        System.out.println("QQ -- variables");
+        System.out.flush();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-
+        System.out.println("QQ -- camera... sus");
+        System.out.flush();
         webcam.setPipeline(duckLocation);
+        System.out.println("QQ -- setpipeline");
+        System.out.flush();
 
         webcam.setMillisecondsPermissionTimeout(2500); // Timeout for obtaining permission is configurable. Set before opening.
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -52,27 +70,16 @@ public class Auto extends QQ_Opmode {
                 /*
                  * This will be called if the camera could not be opened
                  */
+
             }
         });
+        System.out.println("QQ -- open camera");
+
     }
 
     @Override
     public void init_loop() {
-        super.init_loop();
-        ui.update();
-        hashMap = ui.getOptionsHashMap();
-        alliance = (AutoUI.Alliance) hashMap.get("Alliance");
         barcodeLocation = duckLocation.getSlotSelected();
-        QQ_Action storage;
-        curr.setNext(new SetAutoStartPose(alliance, (AutoUI.Strategy) hashMap.get("Strategy")));
-        switch ((AutoUI.Strategy) Objects.requireNonNull(hashMap.get("Strategy"))){
-            case DUCK:
-                curr.setNext(duckStrat);
-            case OTHER:
-            default:
-                curr.setNext(otherStrat);
-        }
-
 
 
     }
@@ -81,6 +88,7 @@ public class Auto extends QQ_Opmode {
     public void start() {
         super.start();
         usesGamepad = false;
+        curr = duckStrat
 
     }
 }

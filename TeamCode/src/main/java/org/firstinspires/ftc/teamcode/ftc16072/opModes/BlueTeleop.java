@@ -4,7 +4,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DelayTill;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DriveAction;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DrivePowerAction;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckRelease;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckSpin;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetLeftPower;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetRightPower;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.TurnTo;
@@ -23,6 +27,16 @@ public class BlueTeleop extends QQ_Opmode {
     @Override
     public void init() {
         super.init();
+        //alliance = AutoUI.Alliance.BLUE;
+        curr = new DuckRelease(true)
+                .setNext(new DuckSpin(true))
+                .setNext(new DelayTill(8))
+                .setNext(new DuckSpin(false))
+                .setNext(new DrivePowerAction(1, -1))
+                .setNext(new DelayTill(1))
+        //.setNext(new DrivePowerAction(0, 0))
+        ;
+
     }
 
 
