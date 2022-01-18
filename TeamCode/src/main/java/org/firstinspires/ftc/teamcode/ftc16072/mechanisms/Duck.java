@@ -26,8 +26,8 @@ public class Duck extends QQ_Mechanism {
      */
     @Override
     public void init(HardwareMap hwMap) {
-        duckServoLeft = hwMap.get(CRServo.class,"duckServoLeft");
-        duckServoRight = hwMap.get(CRServo.class,"duckServoRight");
+        duckServoLeft = hwMap.get(CRServo.class,"duck_Left");
+        duckServoRight = hwMap.get(CRServo.class,"duck_Right");
     }
 
     /**
@@ -38,8 +38,8 @@ public class Duck extends QQ_Mechanism {
     @Override
     public List<QQ_Test> getTests() {
         return Arrays.asList(
-                new Test_Servo("duckServoLeft", (Servo) duckServoLeft, 1,0),
-                new Test_Servo("duckServoRight", (Servo) duckServoRight, 1, 0)
+                new Test_Servo("duck_Left", (Servo) duckServoLeft, 1,0),
+                new Test_Servo("duck_Right", (Servo) duckServoRight, 1, 0)
         );
     }
 

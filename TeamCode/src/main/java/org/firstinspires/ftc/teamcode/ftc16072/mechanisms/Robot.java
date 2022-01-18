@@ -24,7 +24,8 @@ public class Robot {
             lift,
             intake,
             driveTrain,
-            box
+            box,
+            duck
     );
 
 

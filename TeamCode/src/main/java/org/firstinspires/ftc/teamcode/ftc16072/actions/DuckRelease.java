@@ -14,7 +14,7 @@ public class DuckRelease extends QQ_Action {
 
     @Override
     public QQ_Action run(QQ_Opmode opmode) {
-        opmode.robot.duck.release(position);
+       // opmode.robot.duck.release(position);
         return this.nextAction;
     }
 
