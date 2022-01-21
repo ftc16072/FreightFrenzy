@@ -5,7 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DelayTill;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DriveCM;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DropCube;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DualAction;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckSpin;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckStrat;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.GoToSelectedLevel;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.QQ_Action;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.SetAutoStartPose;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
@@ -24,9 +31,8 @@ public class Auto extends QQ_Opmode {
     AutoUI ui;
     HashMap<String, QQUI.Options> hashMap;
     OpenCvWebcam webcam;
-    DuckLocation duckLocation = new DuckLocation(telemetry);
-    DuckStrat duckStrat = new DuckStrat();
-    QQ_Action otherStrat;
+    DuckLocation duckLocation;
+    QQ_Action duckStrat;
 
 
     @Override
@@ -65,6 +71,12 @@ public class Auto extends QQ_Opmode {
                  */
             }
         });
+        curr = new DriveCM(-24, DistanceUnit.INCH)
+                .setNext(new DuckSpin(true))
+                .setNext(new DualAction("drive and move lift to the right height", new DriveCM(48, DistanceUnit.INCH), new GoToSelectedLevel()))
+                .setNext(new DropCube(true))
+                .setNext(new DelayTill(.25))
+                .setNext(new DropCube(false));
     }
 
     @Override
@@ -76,9 +88,12 @@ public class Auto extends QQ_Opmode {
 
     @Override
     public void start() {
-        super.start();
+        System.out.println("QQ -- ??");
+        System.out.flush();
+        telemetry.addData("step", "1");
         usesGamepad = false;
-        curr = duckStrat;
+
+        telemetry.addData("step", "2");
 
     }
 }

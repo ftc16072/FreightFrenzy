@@ -7,20 +7,19 @@ import org.firstinspires.ftc.teamcode.ftc16072.utils.AutoUI;
 
 public class DuckStrat extends QQ_Action {
     QQ_Action list = new nullAction();
+
     public DuckStrat(){
         list.setNext(new DriveCM(-24, DistanceUnit.INCH))
-        .setNext(new DuckSpin(QQ_Opmode.alliance == AutoUI.Alliance.BLUE))
-        .setNext(new DualAction("drive and move lift to the right height",new DriveCM(48, DistanceUnit.INCH), new GoToSelectedLevel() ))
-        .setNext(new DropCube(true))
-        .setNext(new DelayTill(.25))
-        .setNext(new DropCube(false))
-
-        ;
+                .setNext(new DuckSpin(true))
+                .setNext(new DualAction("drive and move lift to the right height", new DriveCM(48, DistanceUnit.INCH), new GoToSelectedLevel()))
+                .setNext(new DropCube(true))
+                .setNext(new DelayTill(.25))
+                .setNext(new DropCube(false));
 
     }
 
     @Override
     public QQ_Action run(QQ_Opmode opmode) {
-        return null;
+        return list.run(opmode);
     }
 }

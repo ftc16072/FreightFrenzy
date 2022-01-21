@@ -90,7 +90,7 @@ public class Lift extends QQ_Mechanism {
             liftMotor.setPower(0);
         }
 
-        System.out.println("QQ -- " + state);
+        //System.out.println("QQ -- " + state);
 
     }
 

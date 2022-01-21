@@ -61,15 +61,12 @@ public class Nav {
         double rightDistance = DistanceUnit.INCH.toCm(currentDistance.get(1));
         drivePower(distance - leftDistance * .2, distance - rightDistance * .2);
         double avgDistance = leftDistance + rightDistance / 2;
-        return avgDistance >= distance - 2;
+        System.out.println("QQ -- " + avgDistance);
+        return Math.abs(avgDistance) >= Math.abs(distance) - 2 && (Math.signum(avgDistance) == Math.signum(distance));
     }
 
     public void drivePower(double leftSpeed, double rightSpeed){
-        if(QQ_Opmode.alliance == AutoUI.Alliance.BLUE){
-            robot.driveTrain.drive(leftSpeed, rightSpeed);
-        } else {
-            robot.driveTrain.drive(-leftSpeed, -rightSpeed);
-        }
+        robot.driveTrain.drive(leftSpeed, rightSpeed);
     }
 
 

@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public abstract class QQ_Opmode extends OpMode {
     public Robot robot = new Robot();
-    protected QQ_Action curr;
+    protected QQ_Action curr = null;
     public QQ_Gamepad gp1;
     public QQ_Gamepad gp2;
     public int barcodeLocation = 0;
@@ -42,13 +44,15 @@ public abstract class QQ_Opmode extends OpMode {
 
     @Override
     public void loop() {
-
         updateGamepads();
         robot.update(time);
+        Log.d("QQ", "updates succed");
         if (curr != null) {
+            Log.d("QQ", "curr not null");
             telemetry.addData("State", curr);
             curr = curr.run(this);
         } else {
+            Log.d("QQ", "curr is null");
             telemetry.addData("State", "No Action");
         }
 
