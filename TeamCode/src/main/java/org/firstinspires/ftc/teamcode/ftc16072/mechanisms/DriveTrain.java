@@ -38,7 +38,7 @@ public class DriveTrain extends QQ_Mechanism {
 
     @Override
     public void update(double time) {
-        tankDrive.update();
+        //tankDrive.update();
     }
 
     public void drive(double leftSpeed, double rightSpeed) {

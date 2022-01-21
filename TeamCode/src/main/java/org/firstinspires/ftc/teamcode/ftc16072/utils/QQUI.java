@@ -21,8 +21,14 @@ public abstract class QQUI {
 
 
     public QQUI(QQ_Opmode opmode){
+        System.out.println("QQ -- QQUI");
+        System.out.flush();
         this.opmode = opmode;
+        System.out.println("QQ -- QQUI 1");
+        System.out.flush();
         this.telemetry = opmode.telemetry;
+        System.out.println("QQ -- QQUI 2");
+        System.out.flush();
 
     }
 

@@ -1,6 +1,10 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +40,7 @@ public class Robot {
      */
     public void init(HardwareMap hwmap) {
         for (QQ_Mechanism mechanism : mechanismList) {
+
             mechanism.init(hwmap);
         }
     }
@@ -52,6 +57,7 @@ public class Robot {
 
     public void update(double time) {
         for (QQ_Mechanism mechanism : mechanismList) {
+            Log.d("QQ", mechanism.getClass().getName());
             mechanism.update(time);
         }
     }

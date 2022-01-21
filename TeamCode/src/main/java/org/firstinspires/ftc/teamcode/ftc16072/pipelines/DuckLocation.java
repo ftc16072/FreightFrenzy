@@ -19,7 +19,7 @@ public class DuckLocation extends OpenCvPipeline{
     Mat slot1;
     Rect space2 = new Rect(126, 120, 50, 50);
     Mat slot2;
-    Rect space3 = new Rect(230, 120, 50, 50);
+    Rect space3 = new Rect(250, 120, 50, 50);
     Mat slot3;
     int slotSelected = -1;
 
@@ -59,9 +59,9 @@ public class DuckLocation extends OpenCvPipeline{
         slot2 = inputMat.submat(space2);
         slot3 = inputMat.submat(space3);
         double space1Color = Core.mean(slot1).val[1];
-        telemetry.addData("Space 1", space1Color);
+        //telemetry.addData("Space 1", space1Color);
         double space2Color = Core.mean(slot2).val[1];
-        telemetry.addData("Space 2", space2Color);
+        //telemetry.addData("Space 2", space2Color);
         double space3Color = Core.mean(slot3).val[1];
 
         if(space1Color >= space2Color && space1Color >= space3Color){

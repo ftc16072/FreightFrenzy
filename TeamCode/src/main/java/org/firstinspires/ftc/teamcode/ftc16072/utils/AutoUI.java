@@ -85,6 +85,9 @@ public class AutoUI extends QQUI{
     }
     public AutoUI(QQ_Opmode opmode){
         super(opmode);
+        System.out.println("QQ -- AutoUI");
+        System.out.flush();
+
         telemetry.setItemSeparator("");
         optionsHashMap.put(alliance.getCaption(), alliancEnum);
         optionsHashMap.put(strategy.getCaption(), strategyEnum);
