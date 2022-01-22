@@ -11,6 +11,5 @@ public class Drive extends QQ_Opmode {
     public void loop() {
         super.loop();
         robot.driveTrain.drive(gp1.leftStick.location.getY(DistanceUnit.CM),gp1.rightStick.location.getY(DistanceUnit.CM));
-        telemetry.addData("angle", robot.driveTrain.getHeading(AngleUnit.DEGREES));
     }
 }
