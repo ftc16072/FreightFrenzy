@@ -20,7 +20,7 @@ public class BlueTeleop extends QQ_Opmode {
     public void loop() {
         super.loop();
         //checkBinds();
-/*
+
         if (gp1.leftTrigger.pushedIn(.2)){
             robot.nav.drivePower(gp1.leftTrigger.getValue(), gp1.leftTrigger.getValue());
         } else if (gp1.rightTrigger.pushedIn(.2)){
@@ -69,16 +69,6 @@ public class BlueTeleop extends QQ_Opmode {
         } else {
             robot.duck.stopSpin();
         }
-
-        /*
-        if (gp1.square.isPressed()) {
-            robot.duck.release(true);
-            robot.duck.spin(alliance == AutoUI.Alliance.RED);
-        } else {
-            robot.duck.stopSpin();
-            robot.duck.release(false);
-        } * /   // THIS SHOULD BE COMMENTED OUT!!!
-*/
 
 
     }
