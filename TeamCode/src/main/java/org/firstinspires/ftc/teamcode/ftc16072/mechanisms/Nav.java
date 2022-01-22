@@ -23,43 +23,12 @@ public class Nav {
 
     }
 
-    public void driveArc(double theta, double r) {
-        System.out.println("QQ************");
-        theta = AngleUnit.normalizeRadians(theta + Math.PI / 2);
-        System.out.println("QQ theta , r" + theta + ", " + r);
-        double diff = theta - robot.driveTrain.getHeading(AngleUnit.RADIANS);
-        diff = AngleUnit.normalizeRadians(diff);
-        double factor = Range.scale(Math.abs(diff), 0, Math.PI, -1, 1);
-        System.out.println("QQ fact:" + factor +" : "+ r * factor);
-
-
-        if (diff >= 0) {
-            robot.driveTrain.drive(r/2, (r * factor)/2);
-        } else {
-            robot.driveTrain.drive((r * factor)/2, r/2);
-        }
-
-    }
-
-    public boolean turnTo(double angle, AngleUnit au){
-
-        if (!robot.driveTrain.tankDrive.isBusy()) {
-            robot.driveTrain.tankDrive.turnAsync(au.toRadians(angle));
-        }
-        return !robot.driveTrain.tankDrive.isBusy();
-    }
-
-    public void setStartPose(Pose2d pose2d) {
-        robot.driveTrain.tankDrive.setPoseEstimate(pose2d);
-    }
-
     public boolean driveCM(double distance) {
-        List<Double> currentDistance = robot.driveTrain.tankDrive.getWheelPositions();
-        double leftDistance = DistanceUnit.INCH.toCm(currentDistance.get(0));
-        double rightDistance = DistanceUnit.INCH.toCm(currentDistance.get(1));
+        double[] currentDistance = robot.driveTrain.getWheelPositions(DistanceUnit.CM);
+        double leftDistance = (currentDistance[0] + currentDistance[1] / 2);
+        double rightDistance = (currentDistance[2] + currentDistance[3] / 2);
         robot.driveTrain.drive(distance - leftDistance * .2, distance - rightDistance * .2);
-        double avgDistance = leftDistance + rightDistance / 2;
-        return avgDistance >= distance - 2;
+        return currentDistance[4] >= distance - 2;
     }
 
 }
