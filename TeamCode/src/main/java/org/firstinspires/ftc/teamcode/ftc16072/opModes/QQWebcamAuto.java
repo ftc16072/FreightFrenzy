@@ -1,23 +1,16 @@
 package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckStrat;
-import org.firstinspires.ftc.teamcode.ftc16072.actions.QQ_Action;
-import org.firstinspires.ftc.teamcode.ftc16072.actions.SetAutoStartPose;
+
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
-import org.firstinspires.ftc.teamcode.ftc16072.utils.AutoUI;
-import org.firstinspires.ftc.teamcode.ftc16072.utils.QQUI;
+
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
-import java.util.HashMap;
-import java.util.Objects;
 
 @Autonomous
 public class QQWebcamAuto extends QQ_Opmode {
