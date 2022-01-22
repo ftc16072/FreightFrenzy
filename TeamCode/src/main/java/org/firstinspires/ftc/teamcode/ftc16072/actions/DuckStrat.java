@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.actions;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
-import org.firstinspires.ftc.teamcode.ftc16072.utils.AutoUI;
+
 
 public class DuckStrat extends QQ_Action {
     QQ_Action list = new nullAction();
