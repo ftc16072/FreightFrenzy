@@ -22,9 +22,9 @@ public class BlueTeleop extends QQ_Opmode {
         //checkBinds();
 
         if (gp1.leftTrigger.pushedIn(.2)){
-            robot.nav.drivePower(gp1.leftTrigger.getValue(), gp1.leftTrigger.getValue());
+            robot.nav.drivePower(gp1.leftTrigger.getValue(), gp1.leftTrigger.getValue(),true);
         } else if (gp1.rightTrigger.pushedIn(.2)){
-            robot.nav.drivePower(-gp1.rightTrigger.getValue(), -gp1.rightTrigger.getValue());
+            robot.nav.drivePower(gp1.rightTrigger.getValue(), gp1.rightTrigger.getValue(), false);
         } else {
             robot.nav.arcadeDrive(gp1.leftStick.location.getX(DistanceUnit.CM), gp1.leftStick.location.getY(DistanceUnit.CM));
         }
@@ -50,9 +50,9 @@ public class BlueTeleop extends QQ_Opmode {
             robot.lift.extendV4b();
         }  else {
             if (gp1.dpad.up.isPressed()){
-                robot.lift.extend(.5);
+                robot.lift.extend(1.0);
             } else if (gp1.dpad.down.isPressed()){
-                robot.lift.retract(-.5);
+                robot.lift.retract(-1.0);
             }
             if(gp1.dpad.left.isNewlyPressed()){
                 robot.lift.up(.1);
@@ -69,6 +69,7 @@ public class BlueTeleop extends QQ_Opmode {
         } else {
             robot.duck.stopSpin();
         }
+        telemetry.addData("Lift Motor",robot.lift.getLiftPosition());
 
 
     }

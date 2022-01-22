@@ -22,16 +22,21 @@ public class Lift extends QQ_Mechanism {
     private Servo v4b;
     private DigitalChannel bottomSensor;
     public static PIDFCoefficients coeff = new PIDFCoefficients(5, 0, 0, 0);
-    public static double vlv1 = 0.65;
+    public static double vlv1 = 0.6;
     public static double vlv2 = 0.5;
     public static double vlv3 = 0.3;
     public static double vmax = 0.95;
     public static double vintake = .95;
-    public static int intake = -150;
-    public static int out = 450;
-    public static int max = 700;
-    public static int min = -150;
+    public static int intake = 0;
+    public static int out = 700;
+    public static int max = 2100;
+    public static int min = 0;
     public State state = State.INTAKE;
+    public static int LV1 = 400;
+    public static int LV2 = 400;
+    public static int LV3 = 700;
+
+
 
     public enum State {
         INTAKE,
@@ -49,6 +54,7 @@ public class Lift extends QQ_Mechanism {
     @Override
     public void init(HardwareMap hwMap) {
         liftMotor = hwMap.get(DcMotorEx.class, "Lift");
+        liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         v4b = hwMap.get(Servo.class, "v4b");
@@ -99,8 +105,11 @@ public class Lift extends QQ_Mechanism {
             case INTAKE:
                 return intake;
             case LVL1:
+                return LV1;
             case LVL2:
+                return LV2;
             case LVL3:
+                return LV3;
             default:
                 return out;
         }
@@ -126,6 +135,10 @@ public class Lift extends QQ_Mechanism {
                 liftMotor.setPower(speed);
             }
         }
+    }
+
+    public double getLiftPosition(){
+        return liftMotor.getCurrentPosition();
     }
 
     public void extendV4b(){

@@ -62,14 +62,14 @@ public class Intake extends QQ_Mechanism {
         switch (which){
             case BOTH:
             default:
-                intake1.setPower(0.8);
-                intake2.setPower(0.8);
+                intake1.setPower(0.6);
+                intake2.setPower(0.6);
                 break;
             case LEFT:
-                intake1.setPower(0.8);
+                intake1.setPower(0.6);
                 break;
             case RIGHT:
-                intake2.setPower(0.8);
+                intake2.setPower(0.6);
         }
 
     }

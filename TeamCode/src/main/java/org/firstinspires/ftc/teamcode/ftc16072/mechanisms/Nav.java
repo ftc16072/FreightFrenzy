@@ -19,7 +19,7 @@ public class Nav {
     public void arcadeDrive(double rotateSpeed, double throttle) {
         double left = -throttle + rotateSpeed;
         double right = -throttle - rotateSpeed;
-        drivePower(left, right);
+        drivePower(left, right, false);
 
     }
 
@@ -32,7 +32,15 @@ public class Nav {
     }
 
     public void drivePower(double leftSpeed, double rightSpeed){
-        robot.driveTrain.drive(leftSpeed, rightSpeed);
+        drivePower(leftSpeed, rightSpeed, false);
+    }
+    public void drivePower(double leftSpeed, double rightSpeed, boolean reverse){
+
+        if(reverse){
+            robot.driveTrain.drive(-leftSpeed,-rightSpeed);
+        }else{
+            robot.driveTrain.drive(leftSpeed, rightSpeed);
+        }
     }
 
 

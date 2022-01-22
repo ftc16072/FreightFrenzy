@@ -57,7 +57,6 @@ public class Robot {
 
     public void update(double time) {
         for (QQ_Mechanism mechanism : mechanismList) {
-            Log.d("QQ", mechanism.getClass().getName());
             mechanism.update(time);
         }
     }
