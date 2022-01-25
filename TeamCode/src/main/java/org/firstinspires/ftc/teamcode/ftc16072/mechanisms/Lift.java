@@ -29,8 +29,11 @@ public class Lift extends QQ_Mechanism {
     public static double vintake = .95;
     public static int intake = -150;
     public static int out = 450;
-    public static int max = 700;
+    public static int max = 2500;
     public static int min = -150;
+    public static int lvl1 = 2100;
+    public static int lvl2 = 2200;
+    public static int lvl3 = 2300;
     public State state = State.INTAKE;
 
     public enum State {
@@ -50,7 +53,7 @@ public class Lift extends QQ_Mechanism {
     public void init(HardwareMap hwMap) {
         liftMotor = hwMap.get(DcMotorEx.class, "Lift");
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         v4b = hwMap.get(Servo.class, "v4b");
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -99,10 +102,12 @@ public class Lift extends QQ_Mechanism {
             case INTAKE:
                 return intake;
             case LVL1:
+                return lvl1;
             case LVL2:
+                return lvl2;
             case LVL3:
             default:
-                return out;
+                return lvl3;
         }
 
     }
@@ -140,15 +145,20 @@ public class Lift extends QQ_Mechanism {
         v4b.setPosition(Math.max(v4b.getPosition() - amountBy, vintake));
     }
 
-    public void stop(){
+    public void stop() {
         liftMotor.setPower(0);
     }
 
-    private boolean extendable(){
+    private boolean extendable() {
         return liftMotor.getCurrentPosition() < max;
     }
-    private boolean retractable(){
+
+    private boolean retractable() {
         return liftMotor.getCurrentPosition() > min;
+    }
+
+    public double getLiftPosition() {
+        return liftMotor.getCurrentPosition();
     }
 
     public double servoPosition() {
