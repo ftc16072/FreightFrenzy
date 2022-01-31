@@ -46,11 +46,9 @@ public class BlueTeleop extends QQ_Opmode {
         }
 
         if (gp2.lBumper.isPressed() || gp2.lBumper.isPressed()) {
-            robot.intake.outtake(Intake.Which.LEFT);
-            robot.intake.outtake(Intake.Which.RIGHT);
+            robot.intake.outtake(Intake.Which.BOTH);
         } else {
-            robot.intake.off(Intake.Which.LEFT);
-            robot.intake.off(Intake.Which.RIGHT);
+            robot.intake.off(Intake.Which.BOTH);
         }
 
         /*
