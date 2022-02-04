@@ -33,8 +33,7 @@ public class Nav {
 
     public boolean driveCM(double distance) {
         double[] currentDistance = robot.driveTrain.getWheelPositions(DistanceUnit.CM);
-        Log.d("QQ", Arrays.toString(currentDistance));
-        Log.d("QQ", String.valueOf(distance));
+
         drivePower(calculateSpeed(distance, currentDistance[4]), calculateSpeed(distance, currentDistance[4]));
 
         boolean done = isDone(distance, currentDistance[4]);
@@ -69,7 +68,7 @@ public class Nav {
     }
 
     public void drivePower(double leftSpeed, double rightSpeed) {
-        Log.d("QQ", leftSpeed + " : " + rightSpeed);
+
         robot.driveTrain.drive(leftSpeed, rightSpeed);
     }
 
