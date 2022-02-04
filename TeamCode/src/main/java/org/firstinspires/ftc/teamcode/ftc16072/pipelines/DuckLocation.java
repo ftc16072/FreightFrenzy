@@ -1,4 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.pipelines;
+import com.acmerobotics.dashboard.config.Config;
+
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
@@ -13,13 +15,14 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  *
  * uses a quick and dirty method that works becausea we know where they are every time
  */
+@Config
 public class DuckLocation extends OpenCvPipeline{
     Telemetry telemetry;
-    Rect space1 = new Rect(8, 110, 50, 50);
+    public static Rect space1 = new Rect(8, 110, 50, 50);
     Mat slot1;
-    Rect space2 = new Rect(126, 120, 50, 50);
+    public static Rect space2 = new Rect(126, 120, 50, 50);
     Mat slot2;
-    Rect space3 = new Rect(250, 120, 50, 50);
+    public static Rect space3 = new Rect(250, 120, 50, 50);
     Mat slot3;
     int slotSelected = -1;
 
