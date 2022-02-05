@@ -19,12 +19,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class DuckLocation extends OpenCvPipeline{
     Telemetry telemetry;
     public static Rect space1 = new Rect(8, 110, 50, 50);
-    Mat slot1;
+    protected Mat slot1;
     public static Rect space2 = new Rect(126, 120, 50, 50);
-    Mat slot2;
+    protected Mat slot2;
     public static Rect space3 = new Rect(250, 120, 50, 50);
-    Mat slot3;
-    int slotSelected = -1;
+    protected Mat slot3;
+    protected int slotSelected = -1;
     Scalar blue = new Scalar(0, 0, 255);
     Scalar green = new Scalar(0, 255, 0);
 
