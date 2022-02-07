@@ -22,8 +22,8 @@ public class Lift extends QQ_Mechanism {
     private Servo v4b;
     private DigitalChannel bottomSensor;
     public static PIDFCoefficients coeff = new PIDFCoefficients(5, 0, 0, 0);
-    public static double vlv1 = 0.65;
-    public static double vlv2 = 0.5;
+    public static double vlv1 = 0.55;
+    public static double vlv2 = 0.35;
     public static double vlv3 = 0.3;
     public static double vmax = 0.95;
     public static double vintake = .95;
@@ -32,8 +32,8 @@ public class Lift extends QQ_Mechanism {
     public static int max = 2500;
     public static int min = -150;
     public static int lvl1 = 2100;
-    public static int lvl2 = 2200;
-    public static int lvl3 = 2300;
+    public static int lvl2 = 2150;
+    public static int lvl3 = 2400;
     public State state = State.INTAKE;
 
     public enum State {

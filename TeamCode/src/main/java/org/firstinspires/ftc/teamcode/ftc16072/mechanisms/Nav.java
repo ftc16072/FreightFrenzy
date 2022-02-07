@@ -46,8 +46,8 @@ public class Nav {
     }
 
     private boolean isDone(double goal, double current) {
-        double toleranceLower = Math.signum(goal) * -5;
-        double toleranceUpper = Math.signum(goal) * 5;
+        double toleranceLower = Math.signum(goal) * -2;
+        double toleranceUpper = Math.signum(goal) * 2;
 
         boolean within = (Math.abs(current) >= Math.abs(goal + toleranceLower)) && (Math.abs(current) <= Math.abs(goal + toleranceUpper));
 

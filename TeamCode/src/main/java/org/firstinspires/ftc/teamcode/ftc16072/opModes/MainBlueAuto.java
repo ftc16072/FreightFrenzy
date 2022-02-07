@@ -12,23 +12,29 @@ import org.firstinspires.ftc.teamcode.ftc16072.actions.GoToSelectedLevel;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.LiftState;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.Lift;
 
-@Autonomous
-public class MainAuto extends QQWebcamAuto {
+@Autonomous(preselectTeleOp = "BlueTeleop")
+public class MainBlueAuto extends QQWebcamAuto {
+    @Override
+    public void init() {
+        super.init();
+        QQ_Opmode.redAlliance = false;
+    }
+
     @Override
     public void start() {
+        super.start();
         curr = new DropCube(false)
                 .setNext(new LiftState(Lift.State.INTAKE))
-                .setNext(new DriveCM(-15, DistanceUnit.CM))
+                .setNext(new DriveCM(-10, DistanceUnit.CM))
                 .setNext(new DuckSpin(true))
                 .setNext(new DelayTill(7))
                 .setNext(new DuckSpin(false))
-                .setNext(new DriveCM(25, DistanceUnit.INCH))
+                .setNext(new DriveCM(20, DistanceUnit.INCH))
                 .setNext(new GoToSelectedLevel())
-                .setNext(new DelayTill(5))
-                .setNext(new DriveCM(-6, DistanceUnit.INCH))
+                .setNext(new DelayTill(4))
                 .setNext(new DropCube(true))
                 .setNext(new DelayTill(1))
-                .setNext(new DriveCM(6, DistanceUnit.INCH))
+                .setNext(new DriveCM(12, DistanceUnit.INCH))
                 .setNext(new DropCube(false))
                 .setNext(new LiftState(Lift.State.INTAKE))
                 .setNext(new DelayTill(1.5))

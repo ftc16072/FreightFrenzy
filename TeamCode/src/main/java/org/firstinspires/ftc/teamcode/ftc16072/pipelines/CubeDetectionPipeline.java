@@ -74,8 +74,6 @@ public class CubeDetectionPipeline extends OpenCvPipeline {
 
     @Override
     public Mat processFrame(Mat input) {
-
-
         Imgproc.cvtColor(input, colorSchemeMat, colorSpace.cvtCode);
         Core.inRange(colorSchemeMat, lower, upper, binaryMat);
         maskedInputMat.release();

@@ -13,7 +13,6 @@ import java.util.List;
 
 public class Intake extends QQ_Mechanism {
     DcMotorEx intake1;
-
     DcMotorEx intake2;
 
     public enum Which{

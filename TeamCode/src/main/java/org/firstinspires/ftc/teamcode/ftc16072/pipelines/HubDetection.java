@@ -21,10 +21,16 @@ import java.util.Vector;
 import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
 import java.util.*;
 
-public class HubDetection extends OpenCvPipeline{
+public class HubDetection extends OpenCvPipeline {
     public Scalar lower = new Scalar(0, 100, 96);
     public Scalar upper = new Scalar(45.3, 255, 186);
     double[] point = new double[2];
+    public static double dp = 1.0;
+    public static double minDist = 32;
+    public static double param1 = 100.0;
+    public static double param2 = 20.0;
+    public static int minRad = 1;
+    public static int maxRad = 100;
 
 
     /**
@@ -81,16 +87,16 @@ public class HubDetection extends OpenCvPipeline{
 
         int threshold = 100;
 
-        Imgproc.Canny(maskedInputMat, edges, threshold, threshold*3);
+        Imgproc.Canny(maskedInputMat, edges, threshold, threshold * 3);
 
         Mat circles = new Mat();
-        Rect boundingbox = new Rect(0,0,0,0);
+        Rect boundingbox = new Rect(0, 0, 0, 0);
 
         double totalCenterX = 0;
         double totalCenterY = 0;
-        Imgproc.HoughCircles(maskedInputMat, circles, Imgproc.HOUGH_GRADIENT, 1.0,
-                (double)maskedInputMat.rows()/32, // change this value to detect circles with different distances to each other
-                100.0, 30.0, 1, 100); // change the last two parameters
+        Imgproc.HoughCircles(maskedInputMat, circles, Imgproc.HOUGH_GRADIENT, dp,
+                (double) maskedInputMat.rows() / minDist, // change this value to detect circles with different distances to each other
+                param1, param2, minRad, maxRad); // change the last two parameters
         // (min_radius & max_radius) to detect larger circle
         for (int x = 0; x < circles.cols(); x++) {
             double[] c = circles.get(0, x);
@@ -99,7 +105,7 @@ public class HubDetection extends OpenCvPipeline{
             Point center = new Point(Math.round(c[0]), Math.round(c[1]));
             // circle center
 
-            Imgproc.circle(maskedInputMat, center, 1, new Scalar(0,100,100), 3, 8, 0 );
+            Imgproc.circle(maskedInputMat, center, 1, new Scalar(0, 100, 100), 3, 8, 0);
             // circle outline
             int radius = (int) Math.round(c[2]);
             //Imgproc.circle(maskedInputMat, center, radius, new Scalar(255,0,255), 3, 8, 0 );
