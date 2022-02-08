@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.actions.DualAction;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DuckSpin;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.GoToSelectedLevel;
 
-public class AutoRed extends QQWebcamAuto{
+public class DuckAutoRed extends QQWebcamAuto{
     @Override
     public void start() {
         super.start();
@@ -20,6 +20,7 @@ public class AutoRed extends QQWebcamAuto{
                 .setNext(new DropCube(true))
                 .setNext(new DelayTill(.25))
                 .setNext(new DropCube(false))
+                .setNext(new DriveCM(48,DistanceUnit.INCH))
         ;
 
 
