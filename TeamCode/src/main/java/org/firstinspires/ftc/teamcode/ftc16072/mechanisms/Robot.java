@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.ftc16072.actions.LiftState;
 import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.HubDetection;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 
 import java.util.Arrays;
@@ -13,12 +14,14 @@ import java.util.List;
 
 public class Robot {
 
+
     public enum ControlScheme {
         FRARCADE,
         TANK,
         ARCADE
     }
 
+    HubDetection hubDetection = new HubDetection();
     public Nav nav = new Nav(this);
     public ControlScheme controlScheme = ControlScheme.FRARCADE;
     public DriveTrain driveTrain = new DriveTrain();
@@ -62,6 +65,7 @@ public class Robot {
         }
         lift.setState(Lift.State.INTAKE);
         box.open(false);
+        //frontCamera.setPipeline();
     }
 
     /**
@@ -79,7 +83,6 @@ public class Robot {
             Log.d("QQ", mechanism.getClass().getName());
             mechanism.update(time);
         }
-        led.internalGreen();
 
     }
 

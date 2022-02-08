@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.pipelines;
 
 
+import org.firstinspires.ftc.teamcode.ftc16072.utils.QQDeque;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -31,6 +32,8 @@ public class HubDetection extends OpenCvPipeline {
     public static double param2 = 20.0;
     public static int minRad = 1;
     public static int maxRad = 100;
+    public static QQDeque valuesX = new QQDeque(20);
+    public static QQDeque valuesY = new QQDeque(20);
 
 
     /**
@@ -112,18 +115,23 @@ public class HubDetection extends OpenCvPipeline {
         }
         double avgX = totalCenterX / circles.cols();
         double avgY = totalCenterY / circles.cols();
+        valuesX.add(avgX);
+        valuesY.add(avgY);
         point[0] = avgX;
         point[1] = avgY;
 
-        Imgproc.circle(maskedInputMat, new Point(avgX, avgY), 20, new Scalar(255,255,255), 4, 8, 0 );
+        Imgproc.circle(maskedInputMat, new Point(avgX, avgY), 20, new Scalar(255, 255, 255), 4, 8, 0);
         return maskedInputMat;
     }
 
-    private double getDistance(Point p1, Point p2){
+    private double getDistance(Point p1, Point p2) {
         return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
     }
 
-    public double[] getHubLocation(){
+    public double[] getHubLocation() {
+        double[] point = new double[2];
+        point[0] = valuesX.average();
+        point[1] = valuesY.average();
         return point;
     }
 

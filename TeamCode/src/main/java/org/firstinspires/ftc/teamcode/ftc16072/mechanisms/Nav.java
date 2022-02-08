@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.ftc16072.actions.QQ_Action;
+import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.HubDetection;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
 public class Nav {
     Robot robot;
     double maxSpeed = .5;
+    double minWindow = 100;
+    double maxWindow = 200;
 
     Nav(Robot robot) {
         this.robot = robot;
@@ -72,8 +77,30 @@ public class Nav {
         robot.driveTrain.drive(leftSpeed, rightSpeed);
     }
 
+    public boolean centerOnHub() {
+        double x = 0;//robot.hubDetection.getHubLocation()[0];
 
+        if (x <= maxWindow && x >= minWindow) {
+            return true;
+        } else if (x < minWindow) {
+            if (QQ_Opmode.redAlliance) {
+                drivePower(-.5, -.5);
+            } else {
+                drivePower(.5, .5);
+            }
+            return false;
+        } else if (x > maxWindow) {
+            if (QQ_Opmode.redAlliance) {
+                drivePower(.5, .5);
+            } else {
+                drivePower(-.5, -.5);
+            }
+            return false;
+        }
 
+        return false;
+
+    }
 
 
 }
