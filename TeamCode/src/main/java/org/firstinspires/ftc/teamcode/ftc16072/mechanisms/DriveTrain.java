@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 
+import android.util.Log;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -22,9 +24,10 @@ public class DriveTrain extends QQ_Mechanism {
     DcMotorEx leftRear;
     DcMotorEx rightRear;
     double ticksPerRotation = 6000;
-    double gearRatio = 1;
+    double gearRatio = 0.036;
     double wheelCirc = 96;
-    double ticksPerMM = ticksPerRotation * gearRatio * wheelCirc;
+    double ticksPerMM = ticksPerRotation * gearRatio / wheelCirc;
+    double ticksPerCM = ticksPerMM * 10;
 
 
     @Override
@@ -58,17 +61,28 @@ public class DriveTrain extends QQ_Mechanism {
         rightRear.setPower(rightSpeed);
     }
 
-    double[] getWheelPositions(DistanceUnit du){
+    double[] getWheelPositions(DistanceUnit du) {
         double[] positions = new double[5];
-        positions[0] = leftFront.getCurrentPosition() * (1 / ticksPerMM);
-        positions[1] = leftRear.getCurrentPosition() * (1 / ticksPerMM);
-        positions[2] = rightFront.getCurrentPosition() * (1 / ticksPerMM);
-        positions[3] = rightRear.getCurrentPosition() * (1 / ticksPerMM);
-        positions[4] = (positions[0] + positions[1] + positions[2] + positions[3])/4;
+        positions[0] = leftFront.getCurrentPosition() * (1 / ticksPerCM);
+        positions[1] = leftRear.getCurrentPosition() * (1 / ticksPerCM);
+        positions[2] = rightFront.getCurrentPosition() * (1 / ticksPerCM);
+        positions[3] = rightRear.getCurrentPosition() * (1 / ticksPerCM);
+        positions[4] = (positions[0] + positions[1] + positions[2] + positions[3]) / 4;
         return positions;
     }
 
-    public boolean isBusy(){
+    public void resetWheels() {
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public boolean isBusy() {
         return leftFront.isBusy() || leftRear.isBusy() || rightRear.isBusy() || rightFront.isBusy();
     }
 }

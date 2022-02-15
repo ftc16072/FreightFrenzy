@@ -43,6 +43,8 @@ public class Robot {
 
             mechanism.init(hwmap);
         }
+        box.open(false);
+        lift.setState(Lift.State.INTAKE);
     }
 
     /**

@@ -10,7 +10,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.QQ_Action;
 import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
-import org.firstinspires.ftc.teamcode.ftc16072.pipelines.HubDetection;
 
 import java.util.Arrays;
 import java.util.List;
@@ -64,9 +63,9 @@ public class Nav {
     private double calculateSpeed(double goal, double current) {
         double diff = goal - current;
         if (Math.signum(diff) == 1) {
-            return Math.max(Math.abs(diff * .1), .2);
+            return Math.max(Math.abs(diff * .1), .3);
         } else {
-            return Math.min(Math.abs(diff * .1), -.2);
+            return Math.min(Math.abs(diff * .1), -.3);
         }
 
 
@@ -76,7 +75,7 @@ public class Nav {
 
         robot.driveTrain.drive(leftSpeed, rightSpeed);
     }
-
+/*
     public boolean centerOnHub() {
         double x = 0;//robot.hubDetection.getHubLocation()[0];
 
@@ -101,6 +100,8 @@ public class Nav {
         return false;
 
     }
+
+ */
 
 
 }
