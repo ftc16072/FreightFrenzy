@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
 
 public class DriveCM extends QQ_Action {
     double distanceCM;
+    boolean flag = true;
 
     public DriveCM(double distance, DistanceUnit du) {
         distanceCM = du.toCm(distance);
@@ -14,6 +15,10 @@ public class DriveCM extends QQ_Action {
 
     @Override
     public QQ_Action run(QQ_Opmode opmode) {
+        if (flag) {
+            opmode.robot.nav.resetPosition();
+            flag = false;
+        }
         if (opmode.robot.nav.driveCM(distanceCM)) {
             return this.nextAction;
         }

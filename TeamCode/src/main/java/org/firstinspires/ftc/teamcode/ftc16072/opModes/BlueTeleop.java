@@ -5,14 +5,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.Lift;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.HubDetection;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.internalFreight;
 
 @TeleOp
 public class BlueTeleop extends QQ_Opmode {
-
+    org.firstinspires.ftc.teamcode.ftc16072.pipelines.internalFreight internalFreight = new internalFreight();
+    HubDetection hubDetection = new HubDetection();
 
     @Override
     public void init() {
         super.init();
+        robot.internalCamera.setPipeline(internalFreight);
+        robot.frontCamera.setPipeline(hubDetection);
     }
 
 
@@ -45,7 +50,7 @@ public class BlueTeleop extends QQ_Opmode {
 
         }
 
-        if (gp2.lBumper.isPressed() || gp2.lBumper.isPressed()) {
+        if (gp2.lBumper.isPressed() || gp2.rBumper.isPressed()) {
             robot.intake.outtake(Intake.Which.BOTH);
         } else {
             robot.intake.off(Intake.Which.BOTH);
@@ -97,6 +102,7 @@ public class BlueTeleop extends QQ_Opmode {
             robot.duck.stopSpin();
         }
         telemetry.addData("lift position", robot.lift.getLiftPosition());
+
 
     }
 }
