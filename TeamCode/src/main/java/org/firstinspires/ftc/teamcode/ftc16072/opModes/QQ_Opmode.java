@@ -48,7 +48,7 @@ public abstract class QQ_Opmode extends OpMode {
 
     }
 
-    private void updateGamepads(){
+    protected void updateGamepads() {
         if (usesGamepad) {
             gp1.update(gamepad1);
             gp2.update(gamepad2);

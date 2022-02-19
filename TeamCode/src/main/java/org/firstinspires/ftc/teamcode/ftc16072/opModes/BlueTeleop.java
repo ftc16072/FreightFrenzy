@@ -16,15 +16,18 @@ public class BlueTeleop extends QQ_Opmode {
     @Override
     public void init() {
         super.init();
-        robot.internalCamera.setPipeline(internalFreight);
-        robot.frontCamera.setPipeline(hubDetection);
+        robot.internalCamera.stopStreaming();
+        robot.frontCamera.stopStreaming();
+        //robot.internalCamera.setPipeline(internalFreight);
+        //robot.frontCamera.setPipeline(hubDetection);
     }
 
 
     @Override
     public void loop() {
-        super.loop();
+        //super.loop();
         //checkBinds();
+        updateGamepads();
 
         if (gp1.leftTrigger.pushedIn(.2)){
             robot.nav.drivePower(-gp1.leftTrigger.getValue(), -gp1.leftTrigger.getValue());
@@ -34,45 +37,17 @@ public class BlueTeleop extends QQ_Opmode {
             robot.nav.arcadeDrive(gp1.leftStick.location.getX(DistanceUnit.CM), gp1.leftStick.location.getY(DistanceUnit.CM));
         }
 
-        if(gp1.lBumper.isPressed()){
-            robot.intake.intake(Intake.Which.LEFT);
 
-        } else {
-            robot.intake.off(Intake.Which.LEFT);
-
-        }
-
-        if (gp1.rBumper.isPressed()) {
-            robot.intake.intake(Intake.Which.RIGHT);
-
-        } else {
-            robot.intake.off(Intake.Which.RIGHT);
-
-        }
 
         if (gp2.lBumper.isPressed() || gp2.rBumper.isPressed()) {
             robot.intake.outtake(Intake.Which.BOTH);
         } else {
-            robot.intake.off(Intake.Which.BOTH);
+            if (gp1.lBumper.isPressed() || gp1.rBumper.isPressed()) {
+                robot.intake.intake(Intake.Which.BOTH);
+            } else {
+                robot.intake.off(Intake.Which.BOTH);
+            }
         }
-
-        /*
-        if(gp1.lBumper.isPressed()){
-            robot.intake.intake(Intake.Which.LEFT);
-            robot.intake.intake(Intake.Which.RIGHT);
-        } else {
-            robot.intake.off(Intake.Which.LEFT);
-            robot.intake.off(Intake.Which.RIGHT);
-        }
-
-        if(gp1.rBumper.isPressed()){
-            robot.intake.outtake(Intake.Which.RIGHT);
-            robot.intake.outtake(Intake.Which.LEFT);
-        } else {
-            robot.intake.off(Intake.Which.RIGHT);
-            robot.intake.off(Intake.Which.LEFT);
-        }
-         */
 
         if (gp1.cross.isPressed()) {
             robot.lift.setState(Lift.State.INTAKE);

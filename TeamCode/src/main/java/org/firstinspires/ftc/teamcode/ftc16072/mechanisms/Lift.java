@@ -26,7 +26,7 @@ public class Lift extends QQ_Mechanism {
     public static double vlv2 = 0.35;
     public static double vlv3 = 0.3;
     public static double vmax = 0.95;
-    public static double vintake = .95;
+    public static double vintake = .9;
     public static int intake = -150;
     public static int out = 450;
     public static int max = 2500;
