@@ -14,7 +14,6 @@ import java.util.List;
 
 public class Robot {
 
-
     public enum ControlScheme {
         FRARCADE,
         TANK,
