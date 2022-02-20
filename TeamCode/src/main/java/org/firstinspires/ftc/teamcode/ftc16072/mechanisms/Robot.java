@@ -31,7 +31,7 @@ public class Robot {
     public LEDS led = new LEDS();
     int[] viewportContainerIds;
     public QQWebcam frontCamera = new QQWebcam("Webcam 1");
-    public QQWebcam internalCamera = new QQWebcam("Webcam 2");
+    //public QQWebcam internalCamera = new QQWebcam("Webcam 2");
     List<QQ_Mechanism> mechanismList = Arrays.asList(
             lift,
             intake,
@@ -39,7 +39,7 @@ public class Robot {
             box,
             duck,
             frontCamera,
-            internalCamera,
+            //internalCamera,
             led
     );
 
@@ -57,7 +57,7 @@ public class Robot {
                         2, //The number of sub-containers to create
                         OpenCvCameraFactory.ViewportSplitMethod.HORIZONTALLY); //Whether to split the container vertically or horizontally
         frontCamera.cameraMonitorViewId = viewportContainerIds[0];
-        internalCamera.cameraMonitorViewId = viewportContainerIds[1];
+        //internalCamera.cameraMonitorViewId = viewportContainerIds[1];
         for (QQ_Mechanism mechanism : mechanismList) {
 
             mechanism.init(hwmap);

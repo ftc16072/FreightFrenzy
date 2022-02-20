@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -22,6 +23,7 @@ import java.util.List;
  * This class is used to run our pipelines
  */
 @TeleOp()
+@Disabled
 public class PipelineRunner extends QQ_Opmode {
     GreenRectangle greenRectangle = new GreenRectangle();
     LineDetection lineDetection = new LineDetection();

@@ -22,8 +22,8 @@ public class Lift extends QQ_Mechanism {
     private Servo v4b;
     private DigitalChannel bottomSensor;
     public static PIDFCoefficients coeff = new PIDFCoefficients(5, 0, 0, 0);
-    public static double vlv1 = 0.55;
-    public static double vlv2 = 0.35;
+    public static double vlv1 = 0.6;
+    public static double vlv2 = 0.45;
     public static double vlv3 = 0.3;
     public static double vmax = 0.95;
     public static double vintake = .9;
@@ -71,25 +71,29 @@ public class Lift extends QQ_Mechanism {
         );
     }
 
-    public void setState(State state) {
+    public void setState(State state, double speed) {
         this.state = state;
         liftMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_TO_POSITION, coeff);
         liftMotor.setTargetPosition(liftPosition());
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        liftMotor.setPower(.45);
+        liftMotor.setPower(speed);
 
         //v4b servo
         v4b.setPosition(servoPosition());
 
     }
 
+    public void setState(State state) {
+        setState(state, .7);
+    }
+
 
     public void update(double time) {
         //motor stuff
-        if(liftMotor.getPower() > 0 && !extendable()){
+        if (liftMotor.getPower() > 0 && !extendable()) {
             liftMotor.setPower(0);
         }
-        if(liftMotor.getPower() <0 && !retractable()){
+        if (liftMotor.getPower() < 0 && !retractable()) {
             liftMotor.setPower(0);
         }
 

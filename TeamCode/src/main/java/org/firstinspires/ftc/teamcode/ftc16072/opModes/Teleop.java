@@ -9,14 +9,14 @@ import org.firstinspires.ftc.teamcode.ftc16072.pipelines.HubDetection;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.internalFreight;
 
 @TeleOp
-public class BlueTeleop extends QQ_Opmode {
+public class Teleop extends QQ_Opmode {
     org.firstinspires.ftc.teamcode.ftc16072.pipelines.internalFreight internalFreight = new internalFreight();
     HubDetection hubDetection = new HubDetection();
 
     @Override
     public void init() {
         super.init();
-        robot.internalCamera.stopStreaming();
+
         robot.frontCamera.stopStreaming();
         //robot.internalCamera.setPipeline(internalFreight);
         //robot.frontCamera.setPipeline(hubDetection);

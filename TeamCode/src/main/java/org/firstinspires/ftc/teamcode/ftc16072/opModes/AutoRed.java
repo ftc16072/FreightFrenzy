@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.ftc16072.actions.DelayTill;
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.ftc16072.actions.LiftState;
 import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.Lift;
 
 @Autonomous
+@Disabled
 public class AutoRed extends QQWebcamAuto{
     @Override
     public void start() {

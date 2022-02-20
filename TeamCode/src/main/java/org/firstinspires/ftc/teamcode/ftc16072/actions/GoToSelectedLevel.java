@@ -33,7 +33,7 @@ public class GoToSelectedLevel extends QQ_Action {
                 break;
         }
 
-        opmode.robot.lift.setState(state);
+        opmode.robot.lift.setState(state, .4);
 
         return this.nextAction;
     }

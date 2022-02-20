@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ftc16072.mechanisms;
 import android.os.Debug;
 import android.util.Log;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.util.Range;
 
@@ -14,11 +15,10 @@ import org.firstinspires.ftc.teamcode.ftc16072.opModes.QQ_Opmode;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Nav {
     Robot robot;
-    double maxSpeed = .5;
-    double minWindow = 100;
-    double maxWindow = 200;
+    public static double MAX_SPEED = 0.8;
 
     Nav(Robot robot) {
         this.robot = robot;
@@ -62,11 +62,14 @@ public class Nav {
 
     private double calculateSpeed(double goal, double current) {
         double diff = goal - current;
+        double returnValue;
         if (Math.signum(diff) == 1) {
-            return Math.max(Math.abs(diff * .1), .3);
+            returnValue = Math.max(Math.abs(diff * .1), .3);
         } else {
-            return Math.min(Math.abs(diff * .1), -.3);
+            returnValue = Math.min(Math.abs(diff * .1), -.3);
         }
+
+        return Math.min(Math.abs(returnValue), MAX_SPEED) * Math.signum(returnValue);
 
 
     }
