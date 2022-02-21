@@ -10,6 +10,7 @@ public class DriveCM extends QQ_Action {
 
     public DriveCM(double distance, DistanceUnit du) {
         distanceCM = du.toCm(distance);
+        flag = true;
     }
 
 

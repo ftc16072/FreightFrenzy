@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.CubeDetectionPipeline;
-import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocationRed;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.GreenRectangle;
 import org.firstinspires.ftc.teamcode.ftc16072.pipelines.LineDetection;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -28,12 +27,12 @@ public class PipelineRunner extends QQ_Opmode {
     GreenRectangle greenRectangle = new GreenRectangle();
     LineDetection lineDetection = new LineDetection();
     CubeDetectionPipeline cubeDetectionPipeline = new CubeDetectionPipeline(telemetry);
-    DuckLocation duckLocation = new DuckLocation(telemetry);
+    DuckLocationRed duckLocationRed = new DuckLocationRed(telemetry);
     List<OpenCvPipeline> pipelines = Arrays.asList(
             lineDetection,
             greenRectangle,
             cubeDetectionPipeline,
-            duckLocation
+            duckLocationRed
     );
     private int currentPipeline;
     OpenCvWebcam webcam;

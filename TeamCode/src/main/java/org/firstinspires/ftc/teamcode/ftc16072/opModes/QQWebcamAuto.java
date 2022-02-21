@@ -2,20 +2,13 @@ package org.firstinspires.ftc.teamcode.ftc16072.opModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-
-import org.firstinspires.ftc.teamcode.ftc16072.mechanisms.Lift;
-import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocation;
-
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvWebcam;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocationBase;
+import org.firstinspires.ftc.teamcode.ftc16072.pipelines.DuckLocationRed;
 
 
 @Autonomous
 public class QQWebcamAuto extends QQ_Opmode {
-    DuckLocation duckLocation = new DuckLocation(telemetry);
+    DuckLocationBase duckLocation = new DuckLocationRed(telemetry);
 
     @Override
     public void init() {

@@ -50,8 +50,8 @@ public class Nav {
     }
 
     private boolean isDone(double goal, double current) {
-        double toleranceLower = Math.signum(goal) * -2;
-        double toleranceUpper = Math.signum(goal) * 2;
+        double toleranceLower = Math.signum(goal) * -5;
+        double toleranceUpper = Math.signum(goal) * 5;
 
         boolean within = (Math.abs(current) >= Math.abs(goal + toleranceLower)) && (Math.abs(current) <= Math.abs(goal + toleranceUpper));
 
@@ -64,9 +64,9 @@ public class Nav {
         double diff = goal - current;
         double returnValue;
         if (Math.signum(diff) == 1) {
-            returnValue = Math.max(Math.abs(diff * .1), .3);
+            returnValue = Math.max(Math.abs(diff * .1), .2);
         } else {
-            returnValue = Math.min(Math.abs(diff * .1), -.3);
+            returnValue = Math.min(Math.abs(diff * .1), -.2);
         }
 
         return Math.min(Math.abs(returnValue), MAX_SPEED) * Math.signum(returnValue);

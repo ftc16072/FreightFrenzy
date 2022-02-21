@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode.ftc16072.pipelines;
+
 import com.acmerobotics.dashboard.config.Config;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.core.Rect;
-import org.opencv.core.Core;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvPipeline;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
  * This class finds the location of ducks -- useful for testing auto before we have a TSE
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * uses a quick and dirty method that works becausea we know where they are every time
  */
 @Config
-public class DuckLocation extends OpenCvPipeline {
+public class DuckLocationBase extends OpenCvPipeline {
     Telemetry telemetry;
     public static Rect space1 = new Rect(70, 120, 50, 50);
     public static Rect space2 = new Rect(200, 120, 50, 50);
@@ -28,17 +29,19 @@ public class DuckLocation extends OpenCvPipeline {
 
     /**
      * constructer to give us acces to telemetry
+     *
      * @param telemetry so that we can return values to the telelmetry for debugging
      */
-    public DuckLocation(Telemetry telemetry) {
+    public DuckLocationBase(Telemetry telemetry) {
         this.telemetry = telemetry;
     }
 
     /**
      * allows the robot to poll the pipeline and discover whet the best slot is
+     *
      * @return an integer representing 1, 2, or 3 for the slots (-1 if not run yet or no slot best)
      */
-    public int getSlotSelected(){
+    public int getSlotSelected() {
         return slotSelected;
     }
 
@@ -48,6 +51,7 @@ public class DuckLocation extends OpenCvPipeline {
      * then we take the blurred mat and submat it into 3 rectangles where we know the spots are
      * We average the color of the submat, and compare the yellow
      * The slot with the most yellow has the duck in it
+     *
      * @param inputMat the mat to analyse from the camera
      * @return returns the modified mat to display for debugging
      */
@@ -80,10 +84,10 @@ public class DuckLocation extends OpenCvPipeline {
         if (space1Color >= space2Color && space1Color >= space3Color) {
             slotSelected = 1;
             Imgproc.rectangle(inputMat, space1, green, 3);
-        } else if (space2Color >= space3Color && space2Color >= space1Color ){
+        } else if (space2Color >= space3Color && space2Color >= space1Color) {
             slotSelected = 2;
             Imgproc.rectangle(inputMat, space2, green, 3);
-        } else if (space3Color >= space2Color){
+        } else if (space3Color >= space2Color) {
             slotSelected = 3;
             Imgproc.rectangle(inputMat, space3, green, 3);
         }

@@ -22,6 +22,7 @@ public class Lift extends QQ_Mechanism {
     private Servo v4b;
     private DigitalChannel bottomSensor;
     public static PIDFCoefficients coeff = new PIDFCoefficients(5, 0, 0, 0);
+    public static double vlvout = 0.5;
     public static double vlv1 = 0.6;
     public static double vlv2 = 0.45;
     public static double vlv3 = 0.3;
@@ -29,7 +30,7 @@ public class Lift extends QQ_Mechanism {
     public static double vintake = .9;
     public static int intake = -150;
     public static int out = 450;
-    public static int max = 2500;
+    public static int max = 2450;
     public static int min = -150;
     public static int lvl1 = 2100;
     public static int lvl2 = 2150;
@@ -138,7 +139,7 @@ public class Lift extends QQ_Mechanism {
     }
 
     public void extendV4b(){
-        v4b.setPosition(vlv1);
+        v4b.setPosition(vlvout);
     }
 
     public void up(double amountBy){
