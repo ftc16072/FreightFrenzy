@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC16072;
+package org.firstinspires.ftc.teamcode.FTC16072.mechanisms;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -15,7 +15,7 @@ public class Intake extends Mechanism{
     String description;
     boolean reverse;
 
-    Intake(String motorName, String description, boolean reverse){
+    public Intake(String motorName, String description, boolean reverse){
         this.motorName = motorName;
         this.description = description;
         this.reverse = reverse;

@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.FTC16072;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Intake;
+import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Mechanism;
+
 import java.util.Arrays;
 import java.util.List;
 
