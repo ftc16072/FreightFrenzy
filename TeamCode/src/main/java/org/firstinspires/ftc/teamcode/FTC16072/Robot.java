@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.FTC16072;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.DuckSpinner;
 import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Mechanism;
 
@@ -11,10 +12,14 @@ import java.util.List;
 public class Robot {
     public Intake frontIntake = new Intake("intake1", "frontIntake", false);
     public Intake backIntake = new Intake ("intake2", "backIntake", true);
+    public DuckSpinner frontDuckSpinner = new DuckSpinner("duck_Right", "FrontDuck");
+    public DuckSpinner backDuckSpinner = new DuckSpinner("duck_Left", "BackDuck");
 
     List<Mechanism> mechanismList = Arrays.asList(
             frontIntake,
-            backIntake
+            backIntake,
+            frontDuckSpinner,
+            backDuckSpinner
     );
     public void init (HardwareMap hwMap){
         for(Mechanism mechanism : mechanismList){
