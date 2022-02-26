@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.FTC16072.mechanisms;
+package org.firstinspires.ftc.teamcode.FTC16072;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,16 +16,24 @@ public class Driving extends OpMode {
 
     @Override
     public void loop() {
-        if(gamepad1.left_bumper){
+        if(gamepad1.right_bumper){
             robot.frontIntake.start();
         }else{
             robot.frontIntake.stop();
         }
-        if(gamepad1.right_bumper){
+        if(gamepad1.left_bumper){
             robot.backIntake.start();
         }else{
             robot.backIntake.stop();
         }
+        if(gamepad1.a){
+            robot.frontDuckSpinner.start();
+            robot.backDuckSpinner.start();
+        }else{
+            robot.frontDuckSpinner.stop();
+            robot.backDuckSpinner.stop();
+        }
+
 
     }
 }

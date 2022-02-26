@@ -41,7 +41,7 @@ public class TestWiring extends OpMode {
                 currentTest = 0;
             }
         }
-        telemetry.addLine("Press a to run test");
+        telemetry.addLine("Press A to run test");
         telemetry.addData("Mechanism", mechanismList.get(currentMechanism).toString());
         telemetry.addData("Test", testList.get(currentTest).getDescription());
 

@@ -12,8 +12,8 @@ import java.util.List;
 public class Robot {
     public Intake frontIntake = new Intake("intake1", "frontIntake", false);
     public Intake backIntake = new Intake ("intake2", "backIntake", true);
-    public DuckSpinner frontDuckSpinner = new DuckSpinner("duck_Right", "FrontDuck");
-    public DuckSpinner backDuckSpinner = new DuckSpinner("duck_Left", "BackDuck");
+    public DuckSpinner frontDuckSpinner = new DuckSpinner("duck_Right", "FrontDuck", false);
+    public DuckSpinner backDuckSpinner = new DuckSpinner("duck_Left", "BackDuck", true);
 
     List<Mechanism> mechanismList = Arrays.asList(
             frontIntake,
