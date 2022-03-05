@@ -33,6 +33,11 @@ public class Driving extends OpMode {
             robot.frontDuckSpinner.stop();
             robot.backDuckSpinner.stop();
         }
+        if(gamepad1.b){
+            robot.box.open();
+        }else{
+            robot.box.close();
+        }
 
 
     }
