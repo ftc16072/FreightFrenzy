@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Box;
 import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.DuckSpinner;
 import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Intake;
 import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Mechanism;
+import org.firstinspires.ftc.teamcode.FTC16072.mechanisms.Virtual4Bar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +17,15 @@ public class Robot {
     public DuckSpinner frontDuckSpinner = new DuckSpinner("duck_Right", "FrontDuck", false);
     public DuckSpinner backDuckSpinner = new DuckSpinner("duck_Left", "BackDuck", true);
     public Box box = new Box();
+    public Virtual4Bar virtual4Bar = new Virtual4Bar();
 
     List<Mechanism> mechanismList = Arrays.asList(
             frontIntake,
             backIntake,
             frontDuckSpinner,
             backDuckSpinner,
-            box
+            box,
+            virtual4Bar
     );
     public void init (HardwareMap hwMap){
         for(Mechanism mechanism : mechanismList){
