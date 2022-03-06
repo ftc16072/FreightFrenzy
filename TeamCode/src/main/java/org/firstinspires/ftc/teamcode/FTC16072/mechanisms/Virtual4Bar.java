@@ -12,10 +12,10 @@ import java.util.List;
 
 public class Virtual4Bar extends Mechanism{
     Servo arm;
-    public static double TOP = 0.3;
-    public static double MIDDLE = 0.35;
-    public static double BOTTOM = 0.55;
-    public static double INTAKE = .95;
+    final static double TOP = 0.3;
+    final static double MIDDLE = 0.35;
+    final static double BOTTOM = 0.55;
+    final static double INTAKE = .95;
 
 
     @Override
