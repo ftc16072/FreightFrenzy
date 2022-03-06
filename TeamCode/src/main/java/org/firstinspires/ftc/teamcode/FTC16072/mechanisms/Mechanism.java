@@ -12,7 +12,7 @@ abstract public class Mechanism {
     public abstract List<QQTest> getTests();
 
     public String toString() {
-        return this.getClass().getName();
+        return this.getClass().getSimpleName();
     }
 
 }
